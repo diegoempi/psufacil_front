@@ -52,12 +52,13 @@
   <div class="container-fluid">
       <div class="row buttonforms bg-primary">
         <div class="col-sm-6 d-flex justify-content-center">
-          <button type="button" class="btn btn-lg btn-forms">Solicita más información</button>
+          <a [routerLink]="[ '/form1']"><button type="button" class="btn btn-lg btn-forms">Solicita más información</button></a>
         </div>
         <div class="col-sm-6 d-flex justify-content-center">
-            <button type="button" class="btn btn-forms btn-lg">Solicita una beca</button>
+          <a [routerLink]="[ '/form2']"><button type="button" class="btn btn-forms btn-lg">Solicita una beca</button></a>
         </div>
       </div>
   </div>
 
 </div>
+
