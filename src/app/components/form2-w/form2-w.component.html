@@ -1,6 +1,66 @@
-<p>
-  form2-w works!
-</p>
+<div class="container">
+  <div class="row"> 
+    <div class="col-md">
+      <form [formGroup]="becaForm">
+        <h3>Datos Alumno</h3>
+        <div formGroupName = "alumno">
+          <div class="form-group">
+            <label for="alNombres">Nombres:</label>
+            <input type="name" formControlName="alNombres" id="alNombres" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="alApellidoP">Apellido Paterno:</label>
+            <input type="name" formControlName="alApellidoP" id="alApellidoP" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="alApellidoM">Apellido Materno:</label>
+            <input type="name" formControlName="alApellidoM" id="alApellidoM" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="alRut">Rut:</label>
+            <input type="name" formControlName="alRut" id="alRut" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="alNacimiento">Fecha de Nacimiento</label>
+            <input type="date" formControlName="alNacimiento" id="alNacimiento" class="form-control">
+          </div>
+        </div>    
+        <h3>Datos Apoderado</h3>
+        <div formGroupName="apoderado">
+          <div class="form-group">
+            <label for="apNombres">Nombres:</label>
+            <input type="name" formControlName="apNombres" id="apNombres" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="apApellidoP">Apellido Paterno:</label>
+            <input type="name" formControlName="apApellidoP" id="apApellidoP" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="apApellidoM">Apellido Materno:</label>
+            <input type="name" formControlName="apApellidoM" id="apApellidoM" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="apRut">Rut:</label>
+            <input type="name" formControlName="apRut" id="apRut" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="apTelefono">Telefono:</label>
+            <input type="name" formControlName="apTelefono" id="apTelefono" class="form-control">
+          </div>
+          <h3>¿Por qué quieres la beca?</h3>    
+        </div>
+          <div class="form-group">
+            <label for="comentarioBeca">Beca</label>
+            <textarea class="form-control" formControlName="comentarioBeca" rows="3"></textarea>
+          </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+    <div class="col-md img-form">  
+      <img src="../../../assets/img/logo-psufacil.png" alt="psumate">
+    </div>
+  </div> 
+</div>
 
 
 <a [routerLink]="['/home']">volver</a>
