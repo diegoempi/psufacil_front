@@ -9,8 +9,8 @@
       <input type="email" formControlName="correo" id="correo" class="form-control">
     </div>
 
-    <div class="form-check form-check-inline"
-        *ngFor="let tipo of infoForm.controls.tipos.controls; let i = index"
+    <div class="form-check form-check-inline" 
+        *ngFor="let tipo of infoForm['controls'].tipos['controls']; let i = index"
         formArrayName="tipos">
       <input type="checkbox" class="form-check-input" [formControlName]="i">
       <label class="form-check-label">{{ tipos[i].nombre }}</label>
