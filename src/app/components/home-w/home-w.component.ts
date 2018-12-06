@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {APP_BASE_HREF} from '@angular/common';
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-home-w',
@@ -9,9 +10,15 @@ import {APP_BASE_HREF} from '@angular/common';
 })
 export class HomeWComponent implements OnInit {
 
-  constructor() {
+  becaForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+
+    this.becaForm = this.fb.group({
+
+    });
     
-   }
+  }
 
   ngOnInit() {
     

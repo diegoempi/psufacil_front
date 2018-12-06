@@ -74,3 +74,8 @@ img {
 .img-form {
     padding-top: 50%;
 }
+
+.pcenter {
+    align-self: center;
+    justify-self: center;
+}
