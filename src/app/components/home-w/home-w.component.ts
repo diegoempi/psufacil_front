@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {APP_BASE_HREF} from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl, Form } from "@angular/forms";
-import { RutValidator } from 'ng2-rut';
+
 import { fillProperties } from '@angular/core/src/util/property';
 
 
@@ -48,16 +48,14 @@ export class HomeWComponent implements OnInit {
       correo: new FormControl('', Validators.required),
       telefono: new FormControl('', Validators.required),
       mensaje: new FormControl('', Validators.required)
-    })
-    
+    });
   }
 
   ngOnInit() {
 
-    
   }
 
-  validForm(): void{
+  validForm(): void {
     console.log(this.becaForm.status);
   }
 
