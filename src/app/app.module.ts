@@ -4,6 +4,9 @@ import { RouterModule } from '@angular/router';
 import { APP_ROUTING } from "./app.routes";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
+//Validators
+import { Ng2Rut } from "ng2-rut";
+
 //componentes
 import { AppComponent } from './app.component';
 import { HomeWComponent } from './components/home-w/home-w.component';
@@ -15,7 +18,8 @@ import { Form2WComponent } from "./components/form2-w/form2-w.component";
     AppComponent,
     HomeWComponent,
     Form1WComponent,
-    Form2WComponent
+    Form2WComponent,
+    Ng2Rut
   ],
   imports: [
     BrowserModule,
