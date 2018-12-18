@@ -79,3 +79,12 @@ img {
     align-self: center;
     justify-self: center;
 }
+
+#logo-header{
+    width: 200px;
+
+}
+
+#logo-div{
+    height: 70px;
+}

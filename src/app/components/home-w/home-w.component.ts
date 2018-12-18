@@ -27,7 +27,11 @@ export class HomeWComponent implements OnInit {
         fechanac: new FormControl('', Validators.required),
         correo: new FormControl('', [Validators.required, Validators.email]),
         telefono: new FormControl('', Validators.required),
-        rut: new FormControl('', [Validators.required])
+        rut: new FormControl('', [Validators.required]),
+        pais: new FormControl('', [Validators.required]),
+        region: new FormControl('', [Validators.required]),
+        comuna: new FormControl('', [Validators.required]),
+        colegio: new FormControl('', [Validators.required])
       }),
 
       apoderado: this.fb.group({
