@@ -4,6 +4,13 @@ import { RouterModule } from '@angular/router';
 import { APP_ROUTING } from "./app.routes";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
+//validators
+
+import { Ng2Rut } from "ng2-rut";
+
+//servicios
+
+import { LocalizacionService } from "./services/localizacion.service";
 
 //componentes
 import { AppComponent } from './app.component';
@@ -23,9 +30,10 @@ import { Form2WComponent } from "./components/form2-w/form2-w.component";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    Ng2Rut,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [LocalizacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

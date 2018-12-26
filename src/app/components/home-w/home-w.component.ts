@@ -3,6 +3,8 @@ import {APP_BASE_HREF} from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl, Form } from "@angular/forms";
 
 import { fillProperties } from '@angular/core/src/util/property';
+import { LocalizacionService } from 'src/app/services/localizacion.service';
+import { RutValidator } from 'ng2-rut';
 
 
 
@@ -17,7 +19,7 @@ export class HomeWComponent implements OnInit {
   becaForm: FormGroup;
   infoForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private fb2:FormBuilder) {
+  constructor(private fb: FormBuilder, private localizacion: LocalizacionService, rutValidator: RutValidator ) {
 
     this.becaForm = this.fb.group({
       alumno: this.fb.group({
@@ -44,9 +46,7 @@ export class HomeWComponent implements OnInit {
       }),
 
     });
-    console.log(this.becaForm);
-    console.log(this.becaForm.status);
-
+  
     this.infoForm = this.fb.group({
       nombre: new FormControl('', Validators.required),
       correo: new FormControl('', Validators.required),
@@ -61,6 +61,10 @@ export class HomeWComponent implements OnInit {
 
   validForm(): void {
     console.log(this.becaForm.status);
+  }
+
+  guardarCambios(){
+    console.log("cambios guardados");
   }
 
 }
