@@ -32,7 +32,7 @@
       <div class="container">
         <div class="intro-text">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xJv-GFSMCKE?rel=0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -303,7 +303,7 @@
                   <h4 class="section-subheading">Datos alumno</h4>
                   <div formGroupName="alumno">  
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Nombres" formControlName="nombres"><i class="fas fa-asterisk"></i>
+                      <input type="text" class="form-control" placeholder="Nombres" formControlName="nombres">
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Apellido materno" formControlName="apellido1">
@@ -315,7 +315,7 @@
                       <input type="date" class="form-control" placeholder="Fecha nacimiento" formControlName="fechanac">
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control" placeholder="Correo" formControlName="correo" (blur)="validForm()">
+                      <input type="email" class="form-control" placeholder="Correo" formControlName="correo">
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Teléfono" formControlName="telefono">
@@ -324,16 +324,19 @@
                       <input type="text" class="form-control" placeholder="Rut" formControlName="rut">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="País" formControlName="pais">
+                      <select type="text" class="form-control" placeholder="Región" formControlName="region">
+                          <option value="" disabled selected>Región</option>
+                      </select>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Región" formControlName="region">
+                      <select type="text" class="form-control" placeholder="Comuna" formControlName="comuna">
+                        <option value="" disabled selected>Comuna</option>
+                      </select>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Comuna" formControlName="comuna">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Colegio" formControlName="colegio">
+                      <select type="text" class="form-control" placeholder="Colegio" formControlName="colegio">
+                        <option value="">Colegio</option>
+                      </select>
                     </div>
                   </div>
                   <div formGroupName="apoderado">
@@ -356,11 +359,12 @@
                     <h5>Escribe tus razones para obtener la beca:</h5>
                     <h6>*Esta es la parte más importante</h6>
                     <div class="form-group">
-                      <textarea class="form-control" rows="5" formControlName="comentario"></textarea>
+                      <textarea class="form-control" rows="7" formControlName="comentario"></textarea>
                     </div>
                   </div>
-                  <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Enviar</button>
-                  {{ becaForm.valid }}
+                  <h6 *ngIf="!becaForm.valid">Aún no has completado los campos</h6>
+                  <h6 *ngIf="becaForm.valid">Puedes enviar el formulario</h6>
+                  <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit" [disabled]="!becaForm.valid">Enviar</button>
                 </form>
               </div>
             </div>

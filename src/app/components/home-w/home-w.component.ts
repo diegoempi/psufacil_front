@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import {APP_BASE_HREF} from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl, Form } from "@angular/forms";
 
@@ -14,7 +14,7 @@ import { RutValidator } from 'ng2-rut';
   styleUrls: ['./home-w.component.css'],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}]
 })
-export class HomeWComponent implements OnInit {
+export class HomeWComponent implements OnInit, OnChanges {
 
   becaForm: FormGroup;
   infoForm: FormGroup;
@@ -30,10 +30,9 @@ export class HomeWComponent implements OnInit {
         correo: new FormControl('', [Validators.required, Validators.email]),
         telefono: new FormControl('', Validators.required),
         rut: new FormControl('', [Validators.required]),
-        pais: new FormControl('', [Validators.required]),
-        region: new FormControl('', [Validators.required]),
-        comuna: new FormControl('', [Validators.required]),
-        colegio: new FormControl('', [Validators.required])
+        region: new FormControl('', []),
+        comuna: new FormControl('', []),
+        colegio: new FormControl('', [])
       }),
 
       apoderado: this.fb.group({
@@ -58,13 +57,17 @@ export class HomeWComponent implements OnInit {
   ngOnInit() {
 
   }
+  
+  ngOnChanges() {
+    console.log(this.becaForm.status);
+  }
 
   validForm(): void {
     console.log(this.becaForm.status);
   }
 
   guardarCambios(){
-    console.log("cambios guardados");
+    console.log(this.becaForm);
   }
 
 }
