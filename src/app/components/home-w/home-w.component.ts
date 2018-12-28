@@ -46,15 +46,9 @@ export class HomeWComponent implements OnInit, OnChanges {
         correo: new FormControl('', [Validators.required, Validators.email]),
         telefono: new FormControl('', Validators.required),
         rut: new FormControl('', [Validators.required]),
-<<<<<<< HEAD
         region: new FormControl('', [Validators.required]),
         comuna: new FormControl('', [Validators.required]),
         colegio: new FormControl('', [Validators.required])
-=======
-        region: new FormControl('', []),
-        comuna: new FormControl('', []),
-        colegio: new FormControl('', [])
->>>>>>> fee4d9197b1b8d48dfab13545e4af553c5691acc
       }),
 
       apoderado: this.fb.group({
@@ -89,7 +83,6 @@ export class HomeWComponent implements OnInit, OnChanges {
   }
 
   guardarCambios(){
-<<<<<<< HEAD
  
     if( this.becaForm.status == 'VALID' ){
 
@@ -171,9 +164,6 @@ export class HomeWComponent implements OnInit, OnChanges {
       });
     }
 
-=======
-    console.log(this.becaForm);
->>>>>>> fee4d9197b1b8d48dfab13545e4af553c5691acc
   }
 
 }
