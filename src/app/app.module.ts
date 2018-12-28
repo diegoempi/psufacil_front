@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTING } from "./app.routes";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 
 //validators
 
@@ -31,7 +32,8 @@ import { Form2WComponent } from "./components/form2-w/form2-w.component";
     FormsModule,
     ReactiveFormsModule,
     Ng2Rut,
-    APP_ROUTING
+    APP_ROUTING,
+    HttpClientModule
   ],
   providers: [LocalizacionService],
   bootstrap: [AppComponent]

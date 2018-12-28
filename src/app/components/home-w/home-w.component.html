@@ -32,7 +32,7 @@
       <div class="container">
         <div class="intro-text">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LAKgjzJ_ep0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -201,23 +201,23 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <form id="contactForm" name="sentMessage" novalidate="novalidate">
+            <form [formGroup]="infoForm" (ngSubmit)="guardarCambiosInfo()">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input class="form-control" id="name" type="text" 
+                    <input formControlName="nombre" class="form-control" id="name" type="text" 
                     placeholder="Ingresa tu nombre *" required="required" 
                     data-validation-required-message="Por favor ingresa tu nombre.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="email" 
+                    <input formControlName="correo" class="form-control" id="email" 
                     placeholder="Ingresa tu email *" required="required" 
                     data-validation-required-message="Por favor ingresa tu correo electrónico.">
                     <p class="help-block text-danger"></p>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="phone" type="tel" 
+                    <input formControlName="telefono" class="form-control" id="phone" type="tel" 
                     placeholder="Ingresa tu teléfono *" required="required" 
                     data-validation-required-message="Por favor ingresa tu número telefónico.">
                     <p class="help-block text-danger"></p>
@@ -225,7 +225,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <textarea class="form-control" id="message" 
+                    <textarea formControlName="mensaje" class="form-control" id="message" 
                     placeholder="Ingresa tu mensaje aquí *" required="required" 
                     data-validation-required-message="Por favor ingresa un mensaje."></textarea>
                     <p class="help-block text-danger"></p>
@@ -323,17 +323,33 @@
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Rut" formControlName="rut">
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                       <input type="text" class="form-control" placeholder="País" formControlName="pais">
+                    </div>-->
+                    <div class="form-group">
+                      <select name="cars" class="form-control" formControlName="region" (click)="getComunas()">
+                          <option value="">Seleccione Región</option>
+                          <option value="{{ region.codRegion }}" *ngFor="let region of regiones">
+                              Region {{ region.codRegion }}
+                          </option>
+                      </select>
+                      <!--<input type="text" class="form-control" placeholder="Región" formControlName="region">-->
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Región" formControlName="region">
+                        <select name="cars" class="form-control" formControlName="comuna" (click)="getColegios()">
+                            <option value="" selected>Seleccione Comuna</option>
+                            <option value="{{ comuna.id }}" *ngFor="let comuna of comunas">
+                                Comuna {{ comuna.nom_comuna }}
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Comuna" formControlName="comuna">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Colegio" formControlName="colegio">
+                        <select name="cars" class="form-control" formControlName="colegio" [value]="">
+                            <option value="" selected>Seleccione su Colegio</option>
+                            <option value=" {{ colegio.id }} " *ngFor="let colegio of colegios">
+                                {{ colegio.nombre }}
+                            </option>
+                        </select>
                     </div>
                   </div>
                   <div formGroupName="apoderado">
