@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 })
 export class LocalizacionService {
 
-  url = "http://localhost:8000/";
+  url = "http://api.psumate.cl/";
 
   constructor(private http: HttpClient){}
 
