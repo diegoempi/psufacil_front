@@ -136,7 +136,7 @@ export class HomeWComponent implements OnInit, OnChanges {
     }
   }
 
-  validateRut ( control: FormControl ): { [ s:string ]:boolean }{
+  validateRut (): { [ s:string ]:boolean }{
     this.validaRut = rutHelpers.rutValidate( this.becaForm['controls'].alumno['controls'].rut.value);
     return this.validaRut;
   }

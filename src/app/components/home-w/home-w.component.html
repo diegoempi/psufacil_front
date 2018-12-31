@@ -304,36 +304,36 @@
                   <div formGroupName="alumno">  
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Nombres" formControlName="nombres">
-                      <p *ngIf="becaForm.controls.alumno.controls.nombres.errors?.required && becaForm.controls.alumno.controls.nombres.touched" class="text-danger">Por favor ingresa tu nombre.</p>
-                      <p *ngIf="becaForm.controls.alumno.controls.nombres.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].nombres.errors?.required && becaForm['controls'].alumno['controls'].nombres.touched" class="text-danger">Por favor ingresa tu nombre.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].nombres.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Apellido paterno" formControlName="apellido2">
-                      <p *ngIf="becaForm.controls.alumno.controls.apellido2.errors?.required && becaForm.controls.alumno.controls.apellido2.touched" class="text-danger">Por favor ingresa tu apellido paterno.</p>
-                      <p *ngIf="becaForm.controls.alumno.controls.apellido2.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].apellido2.errors?.required && becaForm['controls'].alumno['controls'].apellido2.touched" class="text-danger">Por favor ingresa tu apellido paterno.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].apellido2.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Apellido materno" formControlName="apellido1">
-                      <p *ngIf="becaForm.controls.alumno.controls.apellido1.errors?.required && becaForm.controls.alumno.controls.apellido1.touched" class="text-danger">Por favor ingresa tu apellido materno.</p>
-                      <p *ngIf="becaForm.controls.alumno.controls.apellido1.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].apellido1.errors?.required && becaForm['controls'].alumno['controls'].apellido1.touched" class="text-danger">Por favor ingresa tu apellido materno.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].apellido1.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" onfocus="(this.type='date')" class="form-control" placeholder="Fecha nacimiento" formControlName="fechanac">
-                      <p *ngIf="becaForm.controls.alumno.controls.fechanac.errors?.required && becaForm.controls.alumno.controls.fechanac.touched" class="text-danger">Por favor ingresa tu fecha de nacimiento.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].fechanac.errors?.required && becaForm['controls'].alumno['controls'].fechanac.touched" class="text-danger">Por favor ingresa tu fecha de nacimiento.</p>
                     </div>
                     <div class="form-group">
                       <input type="email" class="form-control" placeholder="Correo" formControlName="correo">
-                      <p *ngIf="becaForm.controls.alumno.controls.correo.errors?.required && becaForm.controls.alumno.controls.correo.touched" class="text-danger">Por favor ingresa tu casilla de correo electronico.</p>
-                      <p *ngIf="becaForm.controls.alumno.controls.correo.hasError('email')" class="text-danger">Debes ingresar una casilla de correo electronio válida.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].correo.errors?.required && becaForm['controls'].alumno['controls'].correo.touched" class="text-danger">Por favor ingresa tu casilla de correo electronico.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].correo.hasError('email')" class="text-danger">Debes ingresar una casilla de correo electronio válida.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Teléfono" formControlName="telefono">
-                      <p *ngIf="becaForm.controls.alumno.controls.telefono.errors?.required && becaForm.controls.alumno.controls.telefono.touched" class="text-danger">Por favor ingresa tu telefono.</p>
-                      <p *ngIf="becaForm.controls.alumno.controls.telefono.hasError('minlength')" class="text-danger">Debes ingresar un telefono válido.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].telefono.errors?.required && becaForm['controls'].alumno['controls'].telefono.touched" class="text-danger">Por favor ingresa tu telefono.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].telefono.hasError('minlength')" class="text-danger">Debes ingresar un telefono válido.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Rut" formControlName="rut" (keyup)="validateRut()">
-                      <p *ngIf="!validaRut && becaForm.controls.alumno.controls.rut.touched" class="text-danger">Debes ingresar un RUT válido.</p>
+                      <p *ngIf="!validaRut && becaForm['controls'].alumno['controls'].rut.touched" class="text-danger">Debes ingresar un RUT válido.</p>
                     </div>
                     <!--<div class="form-group">
                       <input type="text" class="form-control" placeholder="País" formControlName="pais">
@@ -368,35 +368,35 @@
                     <h4 class="section-subheading">Datos apoderado</h4>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Nombres" formControlName="nombres">
-                      <p *ngIf="becaForm.controls.apoderado.controls.nombres.errors?.required && becaForm.controls.apoderado.controls.nombres.touched" class="text-danger">Por favor ingresar nombre apoderado.</p>
-                      <p *ngIf="becaForm.controls.apoderado.controls.nombres.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].nombres.errors?.required && becaForm['controls'].apoderado['controls'].nombres.touched" class="text-danger">Por favor ingresar nombre apoderado.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].nombres.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                      <div class="form-group">
                       <input type="text" class="form-control" placeholder="Apellido paterno" formControlName="apellido2"> 
-                      <p *ngIf="becaForm.controls.apoderado.controls.apellido2.errors?.required && becaForm.controls.apoderado.controls.apellido2.touched" class="text-danger">Por favor ingresar apellido paterno.</p>
-                      <p *ngIf="becaForm.controls.apoderado.controls.apellido2.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].apellido2.errors?.required && becaForm['controls'].apoderado['controls'].apellido2.touched" class="text-danger">Por favor ingresar apellido paterno.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].apellido2.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Apellido materno" formControlName="apellido1">
-                      <p *ngIf="becaForm.controls.apoderado.controls.apellido1.errors?.required && becaForm.controls.apoderado.controls.apellido1.touched" class="text-danger">Por favor ingresar apellido materno.</p>
-                      <p *ngIf="becaForm.controls.apoderado.controls.apellido1.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].apellido1.errors?.required && becaForm['controls'].apoderado['controls'].apellido1.touched" class="text-danger">Por favor ingresar apellido materno.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].apellido1.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Correo" formControlName="correo">
-                      <p *ngIf="becaForm.controls.apoderado.controls.correo.errors?.required && becaForm.controls.apoderado.controls.correo.touched" class="text-danger">Por favor ingresar casilla de correo válida.</p>
-                      <p *ngIf="becaForm.controls.apoderado.controls.correo.hasError('email')" class="text-danger">Debes ingresar una casilla de correo electronio válida.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].correo.errors?.required && becaForm['controls'].apoderado['controls'].correo.touched" class="text-danger">Por favor ingresar casilla de correo válida.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].correo.hasError('email')" class="text-danger">Debes ingresar una casilla de correo electronio válida.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Teléfono" formControlName="telefono">
-                      <p *ngIf="becaForm.controls.apoderado.controls.telefono.errors?.required && becaForm.controls.apoderado.controls.telefono.touched" class="text-danger">Por favor ingresar telefono válido.</p>
-                      <p *ngIf="becaForm.controls.apoderado.controls.telefono.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].telefono.errors?.required && becaForm['controls'].apoderado['controls'].telefono.touched" class="text-danger">Por favor ingresar telefono válido.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].telefono.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                     <h5>Escribe tus razones para obtener la beca:</h5>
                     <h6>*Esta es la parte más importante</h6>
                     <div class="form-group">
                       <textarea class="form-control" rows="7" formControlName="comentario"></textarea>
-                      <p *ngIf="becaForm.controls.apoderado.controls.comentario.errors?.required && becaForm.controls.apoderado.controls.comentario.touched" class="text-danger">Por favor ingresar comentario válido.</p>
-                      <p *ngIf="becaForm.controls.apoderado.controls.comentario.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].comentario.errors?.required && becaForm['controls'].apoderado['controls'].comentario.touched" class="text-danger">Por favor ingresar comentario válido.</p>
+                      <p *ngIf="becaForm['controls'].apoderado['controls'].comentario.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                     </div>
                   </div>
                   <h6 *ngIf="!becaForm.valid">Aún no has completado los campos (*)</h6>
