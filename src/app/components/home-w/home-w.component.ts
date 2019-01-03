@@ -48,7 +48,7 @@ export class HomeWComponent implements OnInit, OnChanges {
                                             Validators.minLength(3),
                                             Validators.email ]),
         telefono: new FormControl('',     [ Validators.required,
-                                            Validators.minLength(5) ]),
+                                            Validators.minLength(9) ]),
         rut: new FormControl('',          [ Validators.required ]),
         region: new FormControl('',       [ Validators.required ]),
         comuna: new FormControl('',       [ Validators.required ]),
@@ -82,15 +82,13 @@ export class HomeWComponent implements OnInit, OnChanges {
       mensaje: new FormControl('',  [ Validators.required,
                                       Validators.minLength(3) ])
     });
-
-
     
     //this.becaForm['controls'].alumno['controls'].colegios.disable();
     
     this.localizacion.getRegion()
       .subscribe(respRegiones => {
         this.objRegiones  = respRegiones;
-        this.regiones     = this.objRegiones.data;
+        this.regiones = this.objRegiones.data;
         this.becaForm['controls'].alumno['controls'].comuna.disable();
         this.becaForm['controls'].alumno['controls'].colegio.disable();
       });
@@ -103,17 +101,13 @@ export class HomeWComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges() {
-    console.log(this.becaForm.status);
+    
   }
 
   validForm(): void {
-    console.log(this.becaForm.status);
   }
 
   guardarCambios(){
-
-    
-    console.log(this.becaForm);
 
     if( this.becaForm.status == 'VALID' ){
 
@@ -184,14 +178,18 @@ export class HomeWComponent implements OnInit, OnChanges {
           if(this.objComunas.data.hasOwnProperty(key)){
             this.comunas.push(this.objComunas.data[key]);
           }
-         }
-         this.disabledColegios = false;
+        }
+          this.disabledColegios = false;
       });
     }
   }
 
+
   getColegios(){
+  
     this.comunaSeleccionada = this.becaForm.value.alumno.comuna;
+    
+    this.becaForm['controls'].alumno['controls'].colegio.setValue("");
 
     if(this.comunaSeleccionada != ''){
 
@@ -204,11 +202,8 @@ export class HomeWComponent implements OnInit, OnChanges {
           if(this.objColegios.data.hasOwnProperty(key)){
             this.colegios.push(this.objColegios.data[key]);
           }
-         }
-
+        }
       });
     }
-
   }
-
 }

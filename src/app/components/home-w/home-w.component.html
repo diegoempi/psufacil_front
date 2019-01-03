@@ -72,7 +72,7 @@
               <i class="fas fa-chalkboard-teacher fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Seguimiento</h4>
-            <p class="text-muted">El punto más importante es el seguimiento constante de tus resultados a través de nuestra plataforma, nos preocupamos de verdad por tu desempeño!</p>
+            <p class="text-muted">El punto más importante es el seguimiento constante de tus resultados a través de nuestra plataforma y el contacto con el profesor, nos preocupamos de verdad por tu desempeño!</p>
           </div>
         </div>
       </div>
@@ -135,7 +135,9 @@
                     <h4 class="subheading">Ulises Campodónico</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted">Con un gran entusiasmo y deseo de enseñar logró potenciar mi conocimiento para hacer eficiente la resolución de la forma de matemáticas, de tal manera que me dio la posibilidad de lograr el máximo y poder continuar con mi pasión por la mecánica en la Universidad de Chile.</p>
+                    <p class="text-muted">Con un gran entusiasmo y deseo de enseñar logró potenciar mi conocimiento para hacer eficiente
+                       la resolución de la forma de matemáticas, de tal manera que me dio la posibilidad de lograr el máximo y poder 
+                       continuar con mi pasión por la mecánica en la Universidad de Chile!</p>
                   </div>
                 </div>
               </li>
@@ -149,15 +151,19 @@
                     <h4 class="subheading">Bruno Gálvez</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted">Aunque lo conocí en mi periodo final de preparación PSU, en ese poco tiempo logró demostrar el gran talento que tiene para enseñar los contenidos PSU, luego tuve la oportunidad de trabajar con el, en donde reafirmó la gran calidad y dominio en los contenidos, sin duda, una de las personas que conozco que mejor esta capacitado para la enseñanza de esta prueba y más importante aún, una gran persona.</p>
+                    <p class="text-muted">Aunque lo conocí en mi periodo final de preparación PSU, en ese poco tiempo logró demostrar
+                       el gran talento que tiene para enseñar los contenidos PSU, luego tuve la oportunidad de trabajar con Diego,
+                        en donde reafirmó la gran calidad y dominio en los contenidos, sin duda, una de las personas que conozco 
+                        que mejor está capacitado para la enseñanza de esta prueba y más importante aún, una gran persona.</p>
                   </div>
                 </div>
               </li>
               <li class="timeline-inverted">
-                <div class="timeline-image">
-                  <h4>Se parte
-                    <br>De Nuestra
-                    <br>Historia!</h4>
+                <div class="timeline-image"> 
+                  <h4>¿y TÚ
+                    <br>que 
+                    <br>ESPERAS?
+                  </h4>
                 </div>
               </li>
             </ul>
@@ -226,7 +232,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <textarea formControlName="mensaje" class="form-control" id="message" 
-                    placeholder="Ingresa tu mensaje aquí *"></textarea>
+                    placeholder="Escríbenos para resolver tus dudas! *"></textarea>
                     <p *ngIf="infoForm.controls['mensaje'].errors?.required && infoForm.controls.mensaje.touched" class="text-danger">Por favor ingresa un mensaje.</p>
                     <p *ngIf="infoForm.controls.mensaje.hasError('minlength')" class="text-danger">Debes ingresar 3 caracteres como mínimo.</p>
                   </div>
@@ -248,7 +254,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <span class="copyright">Copyright &copy; PREMATE 2018</span>
+            <span class="copyright">Copyright &copy; PREMATE 2019</span>
           </div>
           <div class="col-md-4">
             <ul class="list-inline social-buttons">
@@ -329,7 +335,7 @@
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Teléfono" formControlName="telefono">
                       <p *ngIf="becaForm['controls'].alumno['controls'].telefono.errors?.required && becaForm['controls'].alumno['controls'].telefono.touched" class="text-danger">Por favor ingresa tu telefono.</p>
-                      <p *ngIf="becaForm['controls'].alumno['controls'].telefono.hasError('minlength')" class="text-danger">Debes ingresar un telefono válido.</p>
+                      <p *ngIf="becaForm['controls'].alumno['controls'].telefono.hasError('minlength')" class="text-danger">Ejemplo: 987654321.</p>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Rut" formControlName="rut" (keyup)="validateRut()">

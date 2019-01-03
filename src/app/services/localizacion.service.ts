@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 })
 export class LocalizacionService {
 
-  url = "http://api.psumate.cl/";
+  url = "http://api.premate.cl/";
 
   constructor(private http: HttpClient){}
 
