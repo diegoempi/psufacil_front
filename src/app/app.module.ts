@@ -3,12 +3,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTING } from "./app.routes";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //validators
 
 import { Ng2Rut } from "ng2-rut";
 
+//Interceptors
+
+import { AuthInterceptor } from "./interceptors/auth-interceptor";
 //servicios
 
 import { LocalizacionService } from "./services/localizacion.service";
@@ -18,6 +21,9 @@ import { AppComponent } from './app.component';
 import { HomeWComponent } from './components/home-w/home-w.component';
 import { Form1WComponent } from './components/form1-w/form1-w.component';
 import { Form2WComponent } from "./components/form2-w/form2-w.component";
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomePComponent } from './components/home-p/home-p.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,9 @@ import { Form2WComponent } from "./components/form2-w/form2-w.component";
     HomeWComponent,
     Form1WComponent,
     Form2WComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomePComponent,
 
   ],
   imports: [
@@ -35,7 +44,10 @@ import { Form2WComponent } from "./components/form2-w/form2-w.component";
     APP_ROUTING,
     HttpClientModule
   ],
-  providers: [LocalizacionService],
+  providers: [
+    LocalizacionService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
