@@ -1,0 +1,88 @@
+<div class="row">
+        <h3>{{ title }}</h3><hr>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <form #registrarCapitulo="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><strong>Nombre del video.</strong></label>
+                    <input type="text" name="nombreVideo" #nombreVideo="ngModel" [(ngModel)]="video.nombre" class="form-control" placeholder="Nombre video">
+                    <small class="form-text text-muted">Nombre perteniente al video.</small>
+                    <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1"><strong>Descripción del video.</strong></label>
+                    <input type="text" name="descripcionVideo" #descripcionVideo="ngModel" [(ngModel)]="video.descripcion" class="form-control" placeholder="Descripción video">
+                    <small class="form-text text-muted">Descripción perteneciente al video.</small>
+                    <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                </div>
+                <div class="form-group">
+                        <label for="exampleInputEmail1"><strong>URL del video.</strong></label>
+                        <input type="text" name="urlVideo" #urlVideo="ngModel" [(ngModel)]="video.url" class="form-control" placeholder="URL video">
+                        <small class="form-text text-muted">URL perteneciente al video.</small>
+                        <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                    </div>
+                <div class="form-group">
+                    <label><strong>Unidad perteneciente.</strong></label><br>
+                        
+                    <select class="form-control" (change)="getCapChange($event.target.value)" name="cars" name="unidadVideo" #unidadVideo="ngModel" [(ngModel)]="video.unidad"  placeholder="Unidad video">
+                        <option value="">Seleccione Unidad</option>
+                        <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
+                            {{ unidad.nombre }}
+                        </option>
+                    </select>
+                    <small class="form-text text-muted">Unidad perteneciente.</small>
+                        <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                </div>
+                <div class="form-group">
+                    <label><strong>Capitulo perteneciente.</strong></label><br>
+                            
+                    <select name="cars" [disabled]="disableCap"  name="capituloVideo" class="form-control" #capituloVideo="ngModel" [(ngModel)]="video.capitulo"  placeholder="Unidad video">
+                        <option value="">Seleccione Capitulo</option>
+                        <option value="{{ capitulo.id }}" *ngFor="let capitulo of capitulos">
+                            {{ capitulo.nombre }}
+                        </option>
+                    </select>
+                    <small class="form-text text-muted">Unidad perteneciente.</small>
+                            <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                </div>
+                <div class="form-group">
+                    <label for="file"><strong>Imagen del video.</strong></label><br>
+                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                    <input type="file" class="form-control" (change)="fileChangeImg($event)" name="imagenVideo" #imagenVideo="ngModel" [(ngModel)]="video.imagen" placeholder="Upload file video">
+                    <small class="form-text text-muted">Imagen perteneciente al video.</small>
+                </div>
+                <div class="form-group">
+                    <label for="file"><strong>Material adicional</strong></label><br>
+                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                    <input type="file" class="form-control" (change)="fileChangeMaterial($event)" name="materialVideo" #materialVideo="ngModel" [(ngModel)]="video.material" placeholder="Upload file video">
+                    <small class="form-text text-muted">Imagen perteneciente al video.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Crear video</button>
+            </form>
+        </div>
+    </div><br><hr>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Videos creados:</h3>
+            <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let unidad of unidades">
+                        <th scope="row">1</th>
+                        <td>{{ unidad.nombre }}</td>
+                        <td>{{ unidad.descripcion }}</td>
+                        <td></td>
+                      </tr>
+    
+                    </tbody>
+                  </table>
+        </div>
+    </div>

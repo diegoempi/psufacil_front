@@ -1,0 +1,72 @@
+<div class="row">
+    <h3>{{ title }}</h3><hr>
+</div><br>
+<div class="row">
+    <div class="col-md-12">
+        <form #registrarCapitulo="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="exampleInputEmail1"><strong>Nombre del capitulo.</strong></label>
+                <input type="text" name="nombreCapitulo" #nombreCapitulo="ngModel" [(ngModel)]="capitulo.nombre" class="form-control" placeholder="Nombre capitulo">
+                <small class="form-text text-muted">Nombre perteniente al capitulo.</small>
+                <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1"><strong>Descripción del capitulo.</strong></label>
+                <input type="text" name="descripcionCapitulo" #descripcionCapitulo="ngModel" [(ngModel)]="capitulo.descripcion" class="form-control" placeholder="Descripción capitulo">
+                <small class="form-text text-muted">Descripción perteneciente al capitulo.</small>
+                <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+            </div>
+            <div class="form-group">
+                    <label><strong>Unidad perteneciente.</strong></label><br>
+                    
+                    <select name="cars" class="form-control" name="unidadCapitulo" #unidadCapitulo="ngModel" [(ngModel)]="capitulo.unidad"  placeholder="Unidad capitulo">
+                            <option value="">Seleccione Unidad perteneciente</option>
+                            <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
+                                    {{ unidad.nombre }}
+                            </option>
+                    </select>
+                    <small class="form-text text-muted">Unidad perteneciente.</small>
+                    <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                </div>
+            <div class="form-group">
+                    <label for="file"><strong>Imagen del capitulo.</strong></label>
+                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                    <input type="file" class="form-control" (change)="fileChange($event)" name="imagenCapitulo" #imagenCapitulo="ngModel" [(ngModel)]="capitulo.imagen" placeholder="Upload file capitulo">
+                    <small class="form-text text-muted">Imagen perteneciente al capitulo.</small>
+                    </div>
+            <button type="submit" class="btn btn-primary">Crear capitulo</button>
+        </form>
+    </div>
+</div><br><hr>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Capitulos creados:</h3>
+        <ul class="list-group">
+            <li  *ngFor="let capitulo of capitulos" class="list-group-item">
+                {{ capitulo.nombre }}
+            </li>
+        </ul>
+
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let unidad of unidades">
+                    <th scope="row">1</th>
+                    <td>{{ unidad.nombre }}</td>
+                    <td>{{ unidad.descripcion }}</td>
+                    <td></td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+    </div>
+</div>

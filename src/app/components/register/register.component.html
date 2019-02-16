@@ -1,30 +1,90 @@
-<div class="middle-box text-center loginscreen   animated fadeInDown">
-  <div>
-      <div>
-
-          <h1 class="logo-name">IN+</h1>
-
-      </div>
-      <h3>Register to IN+</h3>
-      <p>Create account to see it in action.</p>
-      <form class="m-t" role="form" action="login.html">
-          <div class="form-group">
-              <input type="text" class="form-control" placeholder="Name" required="">
-          </div>
-          <div class="form-group">
-              <input type="email" class="form-control" placeholder="Email" required="">
-          </div>
-          <div class="form-group">
-              <input type="password" class="form-control" placeholder="Password" required="">
-          </div>
-          <div class="form-group">
-              <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
-          </div>
-          <button type="submit" class="btn btn-primary block full-width m-b">Regístrate</button>
-
-          <p class="text-muted text-center"><small>Already have an account?</small></p>
-          <a class="btn btn-sm btn-white btn-block" [routerLink]="['/login']">Ingresa</a>
-      </form>
-      <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
-  </div>
+<nav-p  [identity]="identity"></nav-p>
+<div class="container" id="header">
+    <div class="row"> 
+        <div class="col-lg-12"> 
+            <div class="jumbotron">
+                <h3>{{ title }}</h3>
+                <div class="col-md-12">
+                        <h3> </h3>
+                    
+                        <div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
+                            !Te has identificado correctamente! Bienvenido {{ identity.email }}
+                        </div>
+                    
+                        <div class="identity-alert alert alert-danger" *ngIf="identity && identity.data">
+                            !No te has identificado correctamente! 
+                        </div>
+                    
+                        <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7 no-padding"> 
+                            <p>
+                                <label>Nombre:(*)</label>  
+                                <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required placeholder="Ingresa tu nombre">
+                                <span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>
+                            </p>
+                            <p>
+                                <label>Apellidos:(*)</label>  
+                                <input type="text" class="form-control" name="apellido" #apellido="ngModel" [(ngModel)]="user.apellido" required placeholder="Ingresa tus apellidos">
+                                <span class="text-danger" *ngIf="!apellido.valid && apellido.touched">Los apellidos no son válidos</span>
+                            </p>
+                            <p>
+                                <label>Rut:(*)</label>  
+                                <input type="text" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required placeholder="Ingresa tu rut" (keyup)="validateRut()">
+                                <span class="text-danger" *ngIf="!rut.valid && rut.touched">Debes ingresar rut</span>
+                                <span class="text-danger" *ngIf="!validaRut && rut.touched && rut.valid">El rut no es válido</span>
+                            </p>
+                            <p>
+                                <label>Contraseña:(*)</label>  
+                                <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required placeholder="Ingresa tu contraseña">
+                                <span class="text-danger" *ngIf="!password.valid && password.touched">La contraseña no es válida</span>
+                            </p>                        
+                            <p>
+                                <label>Email:(*)</label>  
+                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
+                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                            </p>
+                            <p>
+                                <label>Fecha de Nacimiento:(*)</label>
+                                <input type="date" class="form-control" name="fecha_de_nacimiento" #fecha_de_nacimiento="ngModel" [(ngModel)]="user.fecha_de_nacimiento" required>
+                                <span class="text-danger" *ngIf="!fecha_de_nacimiento.valid && fecha_de_nacimiento.touched">La fecha de nacimiento no es válido</span>
+                            </p>
+                            <p>
+                                <label>Regiones:(*)</label>
+                                    <select name="region" #region="ngModel" [(ngModel)]="user.region" class="form-control" (change)="getComunas()" required>
+                                        <option value="">Seleccione Región</option>
+                                        <option value="{{ region.codRegion }}" *ngFor="let region of regiones">
+                                            Region {{ region.codRegion }}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="!region.valid && region.touched">Debe seleccionar una region</span> 
+                            </p>
+                            <p>
+                                <label>Comuna:(*)</label>
+                                    <select name="comuna" #comuna="ngModel" [(ngModel)]="user.comuna" class="form-control" (change)="getColegios()" disabled="{{ disableComuna }}" required>
+                                        <option value="">Seleccione Comuna</option>
+                                        <option value="{{ comuna.id }}" *ngFor="let comuna of comunas">
+                                            Comuna {{ comuna.nom_comuna }}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="!comuna.valid && comuna.touched">Debe seleccionar una comuna</span>
+                            </p>
+                            <p>
+                                <label>Colegio:(*)</label>
+                                    <select name="colegio" #colegio="ngModel" [(ngModel)]="user.colegio" class="form-control" disabled="{{ disableColegio }}" required>
+                                        <option value="">Seleccione Colegio</option>
+                                        <option value="{{ colegio.id }}" *ngFor="let colegio of colegios">
+                                            {{ colegio.nombre }}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="!colegio.valid && colegio.touched">Debe seleccionar un colegio</span>
+                            </p>
+                            <p>
+                                <label>Código PSU:</label>  
+                                <input type="text" class="form-control" name="codigo_psu" #codigo_psu="ngModel" [(ngModel)]="user.codigo_psu" placeholder="Ingresa tu código psu">
+                            </p>
+                            <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
 </div>

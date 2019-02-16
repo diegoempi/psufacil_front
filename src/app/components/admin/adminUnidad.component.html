@@ -1,0 +1,55 @@
+<div class="row">
+    <h3>{{ title }}</h3><hr>
+</div><br>
+<div class="row">
+    <div class="col-md-12">
+        <form #registrarUnidad="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="exampleInputEmail1"><strong>{{ title }}</strong></label>
+                <input type="text" name="nombreUnidad" #nombreUnidad="ngModel" [(ngModel)]="unidad.nombre" class="form-control" placeholder="Nombre unidad">
+                <small class="form-text text-muted">Nombre perteniente a la unidad.</small>
+                <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1"><strong>Descripción de Unidad.</strong></label>
+                <input type="text" name="descripcionUnidad" #descripcionUnidad="ngModel" [(ngModel)]="unidad.descripcion" class="form-control" placeholder="Descripción unidad">
+                <small class="form-text text-muted">Descripción perteneciente a la unidad.</small>
+                <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+            </div>
+            <div class="form-group">
+                    <label for="file"><strong>Imagen de Unidad.</strong></label><br>
+                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                    <input type="file" class="form-control" (change)="fileChange($event)" name="imagenUnidad" #imagenUnidad="ngModel" [(ngModel)]="unidad.imagen" placeholder="Upload file">
+                    <small class="form-text text-muted">Imagen perteneciente a la unidad.</small>
+                  </div>
+            <button type="submit" class="btn btn-primary">Crear unidad</button>
+        </form>
+    </div>
+</div><br><hr>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Unidades creadas:</h3>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let unidad of unidades">
+                    <th scope="row">1</th>
+                    <td>{{ unidad.nombre }}</td>
+                    <td>{{ unidad.descripcion }}</td>
+                    <td></td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+
+
+    </div>
+</div>

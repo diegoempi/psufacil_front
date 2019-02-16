@@ -8090,3 +8090,19 @@ body.md-skin {
         display: none;
     }
 }
+#logo{
+    height: 35px;
+    margin-top: -10px;
+}
+
+#header{
+    margin-top: 15px;
+}
+
+.no-padding{
+    padding-left: 0px !important;
+}
+
+.nav_img{
+    margin-left: 8%;
+}

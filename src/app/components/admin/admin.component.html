@@ -1,0 +1,112 @@
+<nav-p [identity]="identity"></nav-p>
+
+
+<div class="container" id="header">    <div class="row"><div class="col-md-12">
+  
+        <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+            <ol class="breadcrumb primary-color" style="    margin-right: 15px;
+            padding: 10px;
+            margin-bottom: 0;">
+              <li style="margin-left: 20px;"class="breadcrumb-item"><strong>{{ title }}</strong></li>
+            </ol>
+        </nav>
+        </div></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">            
+                    
+                  
+                    <div class="row">
+                        <div class="col-md-12"><h3>{{ title }}</h3>  
+                            <hr>
+                        </div>
+                        
+                        <div class="col-md-12">
+                                <div class="row">
+                                        <div class="col-4">
+                                          <div class="list-group" id="list-tab" role="tablist">
+                                            <a class="list-group-item list-group-item-action active" id="list-unidad-list" data-toggle="list" href="#list-unidad" role="tab" aria-controls="home">Unidades</a>
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Capitulos</a>
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Videos</a>
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Activar usuarios</a>
+                                          </div>
+                                        </div>
+                                        <div class="col-8">
+                                          <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="list-unidad" role="tabpanel" aria-labelledby="list-unidad-list">
+                                                <app-admin-unidad></app-admin-unidad>
+                                            </div>
+                                            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                                                <app-admin-capitulo></app-admin-capitulo>
+                                            </div>
+                                            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                                                <app-admin-video></app-admin-video>
+                                            </div>
+                                            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+                                          </div>
+                                        </div>
+                                      </div>
+                            </div>
+
+
+                    </div>
+                 
+                      
+                            <!--<div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
+                                !Te has identificado correctamente! Bienvenido {{ identity.email }}
+                            </div>
+                        
+                            <div class="identity-alert alert alert-danger" *ngIf="identity && identity.data">
+                                !No te has identificado correctamente! 
+                            </div>-->
+                        
+                </div>
+            </div>
+    </div>
+      
+        <!--<div class="row"> 
+            <div class="col-lg-12"> 
+         
+            </div>
+        </div>-->
+    </div>
+    
+        <!-- Footer -->
+        <footer>
+    
+              <div class="row">
+                <div class="col-md-4">
+                  <span class="copyright">Copyright &copy; PREMATE 2019</span>
+                </div>
+                <div class="col-md-4">
+                  <ul class="list-inline social-buttons">
+                    <li class="list-inline-item">
+                      <a href="https://www.instagram.com/premate.cl/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://www.facebook.com/groups/459469204548498/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#">
+                        <i class="fab fa-youtube"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- <div class="col-md-4">
+                  <ul class="list-inline quicklinks">
+                    <li class="list-inline-item">
+                      <a href="#">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#">Terms of Use</a>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+    
+          </footer>

@@ -15,6 +15,7 @@ import { AuthInterceptor } from "./interceptors/auth-interceptor";
 //servicios
 
 import { LocalizacionService } from "./services/localizacion.service";
+import { VideosService } from "./services/videos.service";
 
 //componentes
 import { AppComponent } from './app.component';
@@ -24,6 +25,17 @@ import { Form2WComponent } from "./components/form2-w/form2-w.component";
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomePComponent } from './components/home-p/home-p.component';
+import { NavComponent } from './components/nav-p/nav-p.component';
+import { AdjustComponent } from './components/adjust/adjust.component';
+import { VideosComponent } from './components/videos/videos.component';
+import { CapitulosYVideosComponent } from './components/videos/capitulosyvideos.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminUnidadComponent } from './components/admin/adminUnidad.component';
+import { AdminCapituloComponent } from './components/admin/adminCapitulo.component';
+import { VideosListaComponent } from "./components/videos/videoslista.component";
+
+import { AdminVideoComponent } from './components/admin/adminVideo.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +46,15 @@ import { HomePComponent } from './components/home-p/home-p.component';
     LoginComponent,
     RegisterComponent,
     HomePComponent,
-
+    NavComponent,
+    AdjustComponent,
+    VideosComponent,
+    CapitulosYVideosComponent,
+    AdminComponent,
+    AdminUnidadComponent,
+    AdminCapituloComponent,
+    VideosListaComponent,
+    AdminVideoComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +66,7 @@ import { HomePComponent } from './components/home-p/home-p.component';
   ],
   providers: [
     LocalizacionService,
+    VideosService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true  }
   ],
   bootstrap: [AppComponent]

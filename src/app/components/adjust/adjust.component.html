@@ -1,0 +1,153 @@
+<nav-p  [identity]="identity"></nav-p>
+
+<div class="container" id="header">    <div class="row"><div class="col-md-12">
+  
+    <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+        <ol class="breadcrumb primary-color" style="    margin-right: 15px;
+        padding: 10px;
+        margin-bottom: 0;">
+          <li style="margin-left: 20px;"class="breadcrumb-item"><strong>Ajustes</strong></li>
+        </ol>
+    </nav>
+    </div></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="jumbotron">            
+                
+              <h3>{{ title }}</h3><hr>
+
+
+                    
+                        <!--<div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
+                            !Te has identificado correctamente! Bienvenido {{ identity.email }}
+                        </div>
+                    
+                        <div class="identity-alert alert alert-danger" *ngIf="identity && identity.data">
+                            !No te has identificado correctamente! 
+                        </div>-->
+                    
+                        <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7 no-padding"> 
+                            <p>
+                                <label>Nombre:(*)</label>  
+                                <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required placeholder="Ingresa tu nombre">
+                                <span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>
+                            </p>
+                            <p>
+                                <label>Apellidos:(*)</label>  
+                                <input type="text" class="form-control" name="apellido" #apellido="ngModel" [(ngModel)]="user.apellido" required placeholder="Ingresa tus apellidos">
+                                <span class="text-danger" *ngIf="!apellido.valid && apellido.touched">Los apellidos no son válidos</span>
+                            </p>
+                            <p>
+                                <label>Rut:(*)</label>  
+                                <input type="text" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required placeholder="Ingresa tu rut" (keyup)="validateRut()">
+                                <span class="text-danger" *ngIf="!rut.valid && rut.touched">Debes ingresar rut</span>
+                                <span class="text-danger" *ngIf="!validaRut && rut.touched && rut.valid">El rut no es válido</span>
+                            </p>
+                            <p>
+                                <label>Contraseña:(*)</label>  
+                                <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required placeholder="Ingresa tu contraseña">
+                                <span class="text-danger" *ngIf="!password.valid && password.touched">La contraseña no es válida</span>
+                            </p>                        
+                            <p>
+                                <label>Email:(*)</label>  
+                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
+                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                            </p>
+                            <p>
+                                <label>Fecha de Nacimiento:(*)</label>
+                                <input type="date" class="form-control" name="fecha_de_nacimiento" #fecha_de_nacimiento="ngModel" [(ngModel)]="user.fecha_de_nacimiento" required>
+                                <span class="text-danger" *ngIf="!fecha_de_nacimiento.valid && fecha_de_nacimiento.touched">La fecha de nacimiento no es válido</span>
+                            </p>
+                            <p>
+                                <label>Regiones:(*)</label>
+                                    <select name="region" #region="ngModel" [(ngModel)]="user.region" class="form-control" (change)="getComunas()" required>
+                                        <option value="">Seleccione Región</option>
+                                        <option value="{{ region.codRegion }}" *ngFor="let region of regiones">
+                                            Region {{ region.codRegion }}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="!region.valid && region.touched">Debe seleccionar una region</span> 
+                            </p>
+                            <p>
+                                <label>Comuna:(*)</label>
+                                    <select name="comuna" #comuna="ngModel" [(ngModel)]="user.comuna" class="form-control" (change)="getColegios()" disabled="{{ disableComuna }}" required>
+                                        <option value="">Seleccione Comuna</option>
+                                        <option value="{{ comuna.id }}" *ngFor="let comuna of comunas">
+                                            Comuna {{ comuna.nom_comuna }}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="!comuna.valid && comuna.touched">Debe seleccionar una comuna</span>
+                            </p>
+                            <p>
+                                <label>Colegio:(*)</label>
+                                    <select name="colegio" #colegio="ngModel" [(ngModel)]="user.colegio" class="form-control" disabled="{{ disableColegio }}" required>
+                                        <option value="">Seleccione Colegio</option>
+                                        <option value="{{ colegio.id }}" *ngFor="let colegio of colegios">
+                                            {{ colegio.nombre }}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger" *ngIf="!colegio.valid && colegio.touched">Debe seleccionar un colegio</span>
+                            </p>
+                            <p>
+                                <label>Código PSU:</label>  
+                                <input type="text" class="form-control" name="codigo_psu" #codigo_psu="ngModel" [(ngModel)]="user.codigo_psu" placeholder="Ingresa tu código psu">
+                            </p>
+                            <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+                        </form>
+            </div>
+        </div>
+        <div class="col-md-4" style="padding-left:0 !important;">
+            <div class="col">
+                <div class="jumbotron" style="padding: 5px !important;">
+                    <img src="http://noticias.universia.cl/net/images/educacion/b/ba/ban/banner.jpg" alt="..." width="200" class="Responsive image">
+                </div>
+                </div>
+        </div>
+</div>
+  
+    <!--<div class="row"> 
+        <div class="col-lg-12"> 
+     
+        </div>
+    </div>-->
+</div>
+
+    <!-- Footer -->
+    <footer>
+
+          <div class="row">
+            <div class="col-md-4">
+              <span class="copyright">Copyright &copy; PREMATE 2019</span>
+            </div>
+            <div class="col-md-4">
+              <ul class="list-inline social-buttons">
+                <li class="list-inline-item">
+                  <a href="https://www.instagram.com/premate.cl/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.facebook.com/groups/459469204548498/" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="col-md-4">
+              <ul class="list-inline quicklinks">
+                <li class="list-inline-item">
+                  <a href="#">Privacy Policy</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">Terms of Use</a>
+                </li>
+              </ul>
+            </div> -->
+          </div>
+
+      </footer>
