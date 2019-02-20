@@ -3,22 +3,28 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
+//import { UserService }  from "./user.service";
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
+
 export class VideosService{
     public url: string;
     public identity;
     public token;
 
     constructor( 
-        private _http: HttpClient
+        private _http: HttpClient,
+        //private _userService: UserService
 
     ){
        this.url = GLOBAL.url;
     }
 
+    //obtengo unidades 
     obtUnidades( token ){
-
         let params = "authorization=" + token;
         let url2 = this.url + '/obt/unidades';
 
@@ -27,13 +33,56 @@ export class VideosService{
             .map(resp => {console.log(resp);return resp;  });
     }
 
+    obtListaVideos( token, capitulo ){
 
-    obtCapitulos( formData ){
-        console.log( formData);
-        //let params = "&authorization="+token+"&unidad="+;
+        let params = "authorization="+token+"&capitulo="+capitulo;
+
+        let url2 = this.url + '/obt/videos';
+
+        return this._http.post( url2,params,  { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
+            .map(resp => {;return resp;  });
+
+    }
+
+
+    
+
+    obtVideosTodos( token ){
+        //this.token = this._userService.getToken();
+
+        let params = "authorization="+token;
+
+        let url2 = this.url + '/obt/videos/todos';
+
+        return this._http.post( url2,params,  { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
+            .map(resp => {;return resp;  });
+    }
+
+    obtCapitulosDetalle( formData ){
+
         let url2 = this.url + '/obt/capitulos';
 
-        return this._http.post( url2,formData)
+        let params = "authorization="+formData.authorization+"&unidad="+formData.unidad;
+
+        return this._http.post( url2,params,  { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
+            .map(resp => {;return resp;  });
+
+    }
+
+
+
+    //obtengo capitulo
+    obtCapitulos( token ){
+
+        let params = "authorization="+token;
+
+        let url2 = this.url + '/obt/capitulos';
+
+        return this._http.post( url2,params,  { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
             .map(resp => {;return resp;  });
     }
 

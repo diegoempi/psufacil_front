@@ -3,12 +3,13 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { UserService }  from "../../services/user.service";
 import { VideosService }  from "../../services/videos.service";
 import { NavComponent } from "../nav-p/nav-p.component";
+import {HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
   styleUrls: [],
-  providers: [UserService]
+  providers: [UserService, HttpClientModule]
 })
 export class VideosComponent implements OnInit {
   
@@ -61,7 +62,7 @@ export class VideosComponent implements OnInit {
                 }
                 
             });
-    }
+  }
           
 
           /*  this.token = respToken;

@@ -36,6 +36,8 @@ import { VideosListaComponent } from "./components/videos/videoslista.component"
 
 import { AdminVideoComponent } from './components/admin/adminVideo.component';
 
+import { DetalleComponent } from './components/videos/detalle.component';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { AdminVideoComponent } from './components/admin/adminVideo.component';
     AdminUnidadComponent,
     AdminCapituloComponent,
     VideosListaComponent,
-    AdminVideoComponent
+    AdminVideoComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,

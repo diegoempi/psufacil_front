@@ -19,16 +19,16 @@
                         <h2 class="bold">{{ title }}:</h2>
                     </div>
                     <div class="col-md-12">
-                        <p class="font-italic">Seleccione una de los siguientes videos para reproducir:</p>
+                        <p class="font-italic">Seleccione uno de los siguientes videos para reproducir:</p>
                     </div>  
                     <div class="row">
                         <!-- ngFor -->
-                        <div class="card" style="width: 14rem; margin: 10px; padding: 5px;" *ngFor="let capitulo of capitulos">
-                            <a [routerLink]="['/videos/capitulos',capitulo.id]"><img src="http://localhost:8000/uploads/capitulos/{{ capitulo.url }}" class="card-img-top" alt="..."></a>
+                        <div class="card" style="width: 14rem; margin: 10px; padding: 5px;" *ngFor="let video of videos">
+                            <a [routerLink]="['/videos/detalle',video.id]"><img src="http://localhost:8000/uploads/videos/{{ video.urlImagen }}" class="card-img-top" alt="..."></a>
                             <div class="card-body">
-                                <a [routerLink]="['/videos/capitulos',capitulo.id]" ><h5 class="card-title">{{ capitulo.nombre }}</h5></a>
-                                <p class="card-text">{{ capitulo.descripcion }}</p>
-                                <a [routerLink]="['/videos/capitulos',capitulo.id]" class="btn btn-primary">Ingresar</a>
+                                <a [routerLink]="['/videos/detalle',video.id]" ><h5 class="card-title">{{ video.nombre }}</h5></a>
+                                <p class="card-text">{{ video.descripcion }}</p>
+                                <a [routerLink]="['/videos/detalle',video.id]" class="btn btn-primary">Ingresar</a>
                             </div>
                         </div>
                     </div>

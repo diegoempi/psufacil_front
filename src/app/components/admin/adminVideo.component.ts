@@ -9,6 +9,7 @@ import { Unidad } from "../../models/unidad";
 import { GLOBAL } from '../../services/global';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
+import swal from'sweetalert2';
 
 import { FormBuilder, FormGroup, Validators, FormControl, Form } from "@angular/forms";
 
@@ -36,6 +37,10 @@ export class AdminVideoComponent implements OnInit {
     public objUnidades;
     public capitulos;
     public objCapitulos;
+    public videos;
+    public objVideos;
+
+    public data:any = { status:{} };
     
 
     constructor( 
@@ -52,6 +57,7 @@ export class AdminVideoComponent implements OnInit {
 
     ngOnInit() {
         this.getUnidades();
+        this.getVideosTodos();
     }
 
     getUnidades(){
@@ -64,6 +70,27 @@ export class AdminVideoComponent implements OnInit {
                 .subscribe(respRegiones => {
                     this.objUnidades  = respRegiones;
                     this.unidades     = this.objUnidades.data;
+    
+                    console.log( this.unidades );
+            
+                    /*if(this.objUnidades.status != 'success'){
+                        this._router.navigate([ "/home" ]);
+                    }*/
+                    
+                });
+        }
+    }
+
+    getVideosTodos(){
+
+        this.token = this._userService.getToken();
+           
+        if( this.token != null && this.token != ''){
+           
+            this._videosService.obtVideosTodos( this.token )
+                .subscribe(respVideos => {
+                    this.objVideos  = respVideos;
+                    this.videos     = this.objVideos.data;
     
                     console.log( this.unidades );
             
@@ -150,11 +177,45 @@ export class AdminVideoComponent implements OnInit {
         formData.append('capitulo', this.video.capitulo);
         formData.append('authorization', this.token);
 
-        console.log( this.video );
-
         this._videosService.IngVideo(formData)
             .subscribe(data => {
-            // do something, if upload success
+
+                this.data = data;
+
+                if( this.data.status == 'success' ){
+                    swal({
+                        title: 'Video creado exitosamente',
+                        text: 'Nuevo video creado exitosamente.',
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok!'
+                    }).then((result) => {
+                        if (result.value) {
+
+                        window.location.href = '/admin';
+
+                        }
+                    })
+                }else{
+
+                    swal({
+                        title: 'A ocurrido un problema',
+                        text: this.data.msg,
+                        type: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok!'
+                    }).then((result) => {
+                        if (result.value) {
+
+                        //window.location.href = '/admin';
+
+                        }
+                    })
+
+
+                }
+
+
         }, error => {
               console.log(error);
         });

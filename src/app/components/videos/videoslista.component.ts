@@ -33,7 +33,7 @@ export class VideosListaComponent implements OnInit {
 
   ngOnInit() {
     this.redirectIfIdentity();
-    this.title = 'Lista';
+    this.title = 'Lista de videos disponibles';
 
     this.aRoute.params.forEach(( params: Params ) => {
         this.getVideos( params );
@@ -94,7 +94,7 @@ export class VideosListaComponent implements OnInit {
    
     if( this.token != null && this.token != ''){
    
-        this._videosService.obtVideos( this.token, params )
+        this._videosService.obtListaVideos( this.token, params.id )
             .subscribe(respVideos => {
                 this.objVideos  = respVideos;
                 this.videos     = this.objVideos.data;

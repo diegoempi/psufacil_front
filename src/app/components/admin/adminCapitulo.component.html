@@ -19,7 +19,7 @@
             <div class="form-group">
                     <label><strong>Unidad perteneciente.</strong></label><br>
                     
-                    <select name="cars" class="form-control" name="unidadCapitulo" #unidadCapitulo="ngModel" [(ngModel)]="capitulo.unidad"  placeholder="Unidad capitulo">
+                    <select name="cars" class="form-control" name="unidadCapitulo" #unidadCapitulo="ngModel" [(ngModel)]="capitulo.unidad"  placeholder="Unidad capitulo" disabled="{{ loaderUnidad }}">
                             <option value="">Seleccione Unidad perteneciente</option>
                             <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
                                     {{ unidad.nombre }}
@@ -41,11 +41,6 @@
 <div class="row">
     <div class="col-md-12">
         <h3>Capitulos creados:</h3>
-        <ul class="list-group">
-            <li  *ngFor="let capitulo of capitulos" class="list-group-item">
-                {{ capitulo.nombre }}
-            </li>
-        </ul>
 
         <table class="table">
                 <thead>
@@ -57,10 +52,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let unidad of unidades">
+                  <tr *ngFor="let capitulo of capitulos">
                     <th scope="row">1</th>
-                    <td>{{ unidad.nombre }}</td>
-                    <td>{{ unidad.descripcion }}</td>
+                    <td>{{ capitulo.nombre }}</td>
+                    <td>{{ capitulo.descripcion }}</td>
                     <td></td>
                   </tr>
 

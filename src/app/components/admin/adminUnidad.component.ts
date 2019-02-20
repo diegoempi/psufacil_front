@@ -8,6 +8,7 @@ import { Unidad } from "../../models/unidad";
 import { GLOBAL } from '../../services/global';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
+import swal from'sweetalert2';
 
 import { FormBuilder, FormGroup, Validators, FormControl, Form } from "@angular/forms";
 
@@ -26,6 +27,7 @@ export class AdminUnidadComponent implements OnInit {
     public fileToUpload;
     public formData:any;
     public url;
+    public data:any = { status:{} };
 
 
     public unidades;
@@ -68,114 +70,9 @@ export class AdminUnidadComponent implements OnInit {
     }
 
     fileChange(event) {
-
-
-        console.log( event );
-
         this.fileToUpload = event.target.files[0];
-/*
-
-        let elemento = event.target;
-        let url2 = this.url + '/ing/unidades';
-
-        if( elemento.files.length > 0 ){
-            let formData = new FormData;
-            //formData.append('file', elemento.files[0]);
-
-            this.file = e.target.files[0];
-
-
-            this._http.post(url2,formData)
-            .subscribe( ( data ) => {
-                //let jsonRes = data.json();
-                console.log( data );
-            },(error) => console.log(error.message));
-
-
-        }*/
     }
 
-
-
-        /*
-        let fileList: FileList = event.target.files;
-        if(fileList.length > 0) {
-            let file: File = fileList[0];
-            let formData:FormData = new FormData();
-            formData.append('uploadFile', file, file.name);
-            let headers = new Headers();
-            /** In Angular 5, including the header Content-Type can invalidate your request */
-          /*  headers.append('Content-Type', 'multipart/form-data');
-            headers.append('Accept', 'application/json');
-
-
-
-            let url2 = this.url + '/ing/unidades';
-
-            console.log(formData.get('uploadFile'));
-
-            const httpOptions = {
-                headers: new HttpHeaders({
-                  'Content-Type':  'application/json'
-                })
-              };
-
-              console.log( httpOptions );
-
-            return this._http.post(url2, { headers: httpOptions, body: formData})
-            .map(resp => {;return resp;  });
-            //.map(res => res.json())
-            //.catch(error => Observable.throw(error))
-            //.subscribe(
-            //    data => console.log('success'),
-            //    error => console.log(error)
-            //)
-    }*/
-
-
-
-    subeImg( event: EventTarget ){
-
-
-        
-        //const eventObj: MSInputMethodContext = <MSInputMethodContext>event;
-        //const target: HTMLInputElement = <HTMLInputElement>eventObj.target;
-        //const files: FileList = target.files;
-
-        //this.formData = new FormData();
-
-  /*for (let i = 0; i < files.length; i++) {
-    this.formData.append('file', files[i]);
-  }*/
-
-  //console.log(JSON.stringify(this.formData));
-
-
-
-        //let fileList: FileList = event.target.files; 
-
-        //this.fileToUpload = files.item(0);
-
-
-        //console.log(fileList);
-
-
-          //  let file: File = fileList[0];   
-            //let fileSize:number=fileList[0].size;  
-
-            //let formData:FormData = new FormData();  
-            //formData.append('Document',file);  
-
-
-        //let formData = new FormData();
-        //formData.append('file_upload', this.fileToUpload, 'hola.jpg');
-
-        /*formData.forEach ((valor, clave) => { 
-            console.log ("clave% s: valor% s", clave, valor); 
-            })*/
-
-        //console.log(formData);
-    }
 
     onSubmit(){
 
@@ -190,6 +87,45 @@ export class AdminUnidadComponent implements OnInit {
 
         this._videosService.IngUnidad(formData)
             .subscribe(data => {
+
+                this.data = data;
+
+                console.log( this.data );
+
+                if( this.data.status == 'success' ){
+                    swal({
+                        title: 'Unidad creada exitosamente',
+                        text: 'Nueva unidad creada exitosamente.',
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok!'
+                    }).then((result) => {
+                        if (result.value) {
+
+                        window.location.href = '/admin';
+
+                        }
+                    })
+                }else{
+
+                    swal({
+                        title: 'A ocurrido un problema',
+                        text: this.data.msg,
+                        type: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok!'
+                    }).then((result) => {
+                        if (result.value) {
+
+                        //window.location.href = '/admin';
+
+                        }
+                    })
+
+
+                }
+
+
             // do something, if upload success
           }, error => {
               console.log(error);

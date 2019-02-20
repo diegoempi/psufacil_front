@@ -5,12 +5,12 @@ import { VideosService }  from "../../services/videos.service";
 import { NavComponent } from "../nav-p/nav-p.component";
 
 @Component({
-  selector: 'app-capitulosyvideos',
-  templateUrl: './capitulosyvideos.component.html',
+  selector: 'app-detalle',
+  templateUrl: './detalle.component.html',
   styleUrls: [],
-  providers: [UserService]
+  providers: [ UserService ]
 })
-export class CapitulosYVideosComponent implements OnInit {
+export class DetalleComponent implements OnInit {
   
   public identity;
   public unidades;
@@ -33,10 +33,10 @@ export class CapitulosYVideosComponent implements OnInit {
 
   ngOnInit() {
     this.redirectIfIdentity();
-    this.title = 'Capitulos';
+    this.title = 'Reproducir';
 
     this.aRoute.params.forEach(( params: Params ) => {
-        this.getCapitulos( params );
+        this.getVideos( params );
     });
     //this.getUnidades();
 
@@ -53,24 +53,24 @@ export class CapitulosYVideosComponent implements OnInit {
 
   }
 
-    getCapitulos( params ){
+//    getVideos( params ){
+
+  //  }
+/*    getCapitulos( params ){
 
         console.log( params.id );
         this.token = this._userService.getToken();
  
-        //let formData = new FormData();
-        //formData.append('unidad', params.id);
-        //formData.append('authorization', this.token);
+        let formData = new FormData();
+        formData.append('unidad', params.id);
+        formData.append('authorization', this.token);
 
-        let formData = {
-            unidad: params.id,
-            authorization: this.token  
-        }
+
 
        
         if( this.token != null && this.token != ''){
        
-            this._videosService.obtCapitulosDetalle( formData )
+            this._videosService.obtCapitulos( formData )
                 .subscribe(respCapitulos => {
                     this.objCapitulos  = respCapitulos;
                     this.capitulos     = this.objCapitulos.data;
@@ -85,7 +85,7 @@ export class CapitulosYVideosComponent implements OnInit {
                 });
 
         }
-  }
+  }*/
 
 
   getVideos( params ){
@@ -94,13 +94,11 @@ export class CapitulosYVideosComponent implements OnInit {
    
     if( this.token != null && this.token != ''){
    
-        this._videosService.obtVideos( this.token, params )
+        this._videosService.obtListaVideos( this.token, params.id )
             .subscribe(respVideos => {
                 this.objVideos  = respVideos;
                 this.videos     = this.objVideos.data;
-
-                console.log( this.videos);
-        
+       
                 if(this.objVideos.status != 'success'){
                     this._router.navigate([ "/home" ]);
                 }

@@ -8,6 +8,7 @@ import { VideosComponent } from "./components/videos/videos.component"
 import { CapitulosYVideosComponent } from "./components/videos/capitulosyvideos.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { VideosListaComponent } from "./components/videos/videoslista.component";
+import { DetalleComponent } from "./components/videos/detalle.component";
 
 const APP_ROUTES: Routes = [
 	{ path: 'web', component: HomeWComponent },
@@ -18,6 +19,7 @@ const APP_ROUTES: Routes = [
 	{ path: 'videos/unidades', component: VideosComponent },
 	{ path: 'videos/capitulos/:id', component: CapitulosYVideosComponent },
 	{ path: 'videos/lista/:id', component: VideosListaComponent },
+	{ path: 'videos/detalle/:id', component: DetalleComponent },
 	{ path: 'admin', component: AdminComponent },
 	{ path: 'home', component: HomePComponent },
 	{ path: '', component: HomeWComponent, pathMatch: 'full' },

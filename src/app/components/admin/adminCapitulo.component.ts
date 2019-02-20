@@ -9,6 +9,7 @@ import { Capitulo } from "../../models/capitulos";
 import { GLOBAL } from '../../services/global';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
+import swal from'sweetalert2';
 
 import { FormBuilder, FormGroup, Validators, FormControl, Form } from "@angular/forms";
 
@@ -27,12 +28,15 @@ export class AdminCapituloComponent implements OnInit {
     public fileToUpload;
     public formData:any;
     public url;
+    public loaderUnidad: boolean = true;
 
     public unidades;
     public objUnidades;
 
     public capitulos;
     public objCapitulos;
+
+    public data:any = { status:{} };
 
     constructor( 
         private _userService: UserService,
@@ -61,12 +65,12 @@ export class AdminCapituloComponent implements OnInit {
                     this.objUnidades  = respRegiones;
                     this.unidades     = this.objUnidades.data;
     
-                    console.log( this.unidades );
+                    this.loaderUnidad = false;
             
                     /*if(this.objUnidades.status != 'success'){
                         this._router.navigate([ "/home" ]);
                     }*/
-                    
+    
                 });
         }
     }
@@ -82,9 +86,7 @@ export class AdminCapituloComponent implements OnInit {
                 .subscribe(respRegiones => {
                     this.objCapitulos  = respRegiones;
                     this.capitulos     = this.objCapitulos.data;
-    
-                    console.log( this.capitulos );
-            
+           
                     /*if(this.objUnidades.status != 'success'){
                         this._router.navigate([ "/home" ]);
                     }*/
@@ -217,6 +219,42 @@ export class AdminCapituloComponent implements OnInit {
 
         this._videosService.IngCapitulo(formData)
             .subscribe(data => {
+
+                this.data = data;
+
+                if( this.data.status == 'success' ){
+                    swal({
+                        title: 'Unidad creada exitosamente',
+                        text: 'Nueva unidad creada exitosamente.',
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok!'
+                    }).then((result) => {
+                        if (result.value) {
+
+                        window.location.href = '/admin';
+
+                        }
+                    })
+                }else{
+
+                    swal({
+                        title: 'A ocurrido un problema',
+                        text: this.data.msg,
+                        type: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ok!'
+                    }).then((result) => {
+                        if (result.value) {
+
+                        //window.location.href = '/admin';
+
+                        }
+                    })
+
+
+                }
+
             // do something, if upload success
           }, error => {
               console.log(error);
