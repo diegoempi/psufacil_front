@@ -51,4 +51,9 @@ export class AdjustComponent implements OnInit {
 
   }
 
+
+  onSubmit(){
+    
+  }
+
 }

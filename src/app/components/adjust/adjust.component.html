@@ -39,7 +39,7 @@
                             </p>
                             <p>
                                 <label>Rut:(*)</label>  
-                                <input type="text" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required placeholder="Ingresa tu rut" (keyup)="validateRut()">
+                                <input type="text" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required placeholder="Ingresa tu rut">
                                 <span class="text-danger" *ngIf="!rut.valid && rut.touched">Debes ingresar rut</span>
                                 <span class="text-danger" *ngIf="!validaRut && rut.touched && rut.valid">El rut no es válido</span>
                             </p>
@@ -60,7 +60,7 @@
                             </p>
                             <p>
                                 <label>Regiones:(*)</label>
-                                    <select name="region" #region="ngModel" [(ngModel)]="user.region" class="form-control" (change)="getComunas()" required>
+                                    <select name="region" #region="ngModel" [(ngModel)]="user.region" class="form-control" required>
                                         <option value="">Seleccione Región</option>
                                         <option value="{{ region.codRegion }}" *ngFor="let region of regiones">
                                             Region {{ region.codRegion }}
@@ -70,7 +70,7 @@
                             </p>
                             <p>
                                 <label>Comuna:(*)</label>
-                                    <select name="comuna" #comuna="ngModel" [(ngModel)]="user.comuna" class="form-control" (change)="getColegios()" disabled="{{ disableComuna }}" required>
+                                    <select name="comuna" #comuna="ngModel" [(ngModel)]="user.comuna" class="form-control" disabled="{{ disableComuna }}" required>
                                         <option value="">Seleccione Comuna</option>
                                         <option value="{{ comuna.id }}" *ngFor="let comuna of comunas">
                                             Comuna {{ comuna.nom_comuna }}
