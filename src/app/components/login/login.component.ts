@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserService } from "../../services/user.service";
+import { GlobalService } from "../../services/global";
+import swal from'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -17,16 +19,18 @@ export class LoginComponent implements OnInit {
   public user;
   public identity;
   public token;
+  public code;
 
   constructor(
       private _route: ActivatedRoute,
       private _router: Router,
-      private _userService: UserService
+      private _userService: UserService,
+      private _globalService: GlobalService
   ) {
       this.title = 'Identificate';
       this.user = {
-        "rut":"1631012",
-        "password":"123456",
+        "rut":"",
+        "password":"",
         "getIdentity":"true"
       }
   }
@@ -37,9 +41,9 @@ export class LoginComponent implements OnInit {
   }
 
   redirectIfIdentity(){
-    let identity = this._userService.getIdentity();
+    this.identity = this._userService.getIdentity();
     
-    if( identity != null  && identity.sub) {
+    if( this.identity != null  && this.identity.sub) {
       this._router.navigate([ "/home" ]);
     }
 
@@ -66,15 +70,18 @@ export class LoginComponent implements OnInit {
 
     this.user.getIdentity = true;
 
-    
-    this._userService.signup( this.user )
+    if( this.formValues.form.value.nombre != '' && this.formValues.form.value.password != '' ){
+
+      this._userService.signup( this.user )
       .subscribe(
-        response => { 
+        response => {
           this.identity = response;
-         
-          if( this.identity.length <= 1 ){
-              console.log( 'Error en el servidor' );
-          }{
+
+          if( this.identity.status == null){
+            this.identity = null;
+            this.code = 402;
+            this._globalService.alertSweet( this.code );
+          }else{
 
             if( this.identity.status ){
               localStorage.setItem( 'identity', JSON.stringify( this.identity ));
@@ -83,7 +90,7 @@ export class LoginComponent implements OnInit {
                 this.user.getIdentity = null;
                 this._userService.signup( this.user )
                 .subscribe(
-                  response => { 
+                  response => {
                     this.token = response;
                       
                     if( this.identity.length <= 1 ){
@@ -99,18 +106,31 @@ export class LoginComponent implements OnInit {
                     }
                   },
                   error => {
-                    console.log(<any>error);
+                    //error del servidor
+                    this.code = 501;
+                    this._globalService.alertSweet( this.code );
                   }
                 );
             }else{
 
             }
-          }
+          
+        }
       },
       error => {
-                console.log(<any>error);
-            }
-        );
+        //error del servidor
+        this.code = 501;
+        this._globalService.alertSweet( this.code );
+      }
+    );
+
+
+    }else{
+      this.code = 401;
+      this._globalService.alertSweet( this.code );
+    }
+    
+
 }
 
 }

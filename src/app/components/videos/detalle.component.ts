@@ -100,7 +100,7 @@ export class DetalleComponent implements OnInit {
                 this.videos     = this.objVideos.data;
        
                 if(this.objVideos.status != 'success'){
-                    this._router.navigate([ "/home" ]);
+                    //this._router.navigate([ "/home" ]);
                 }
                 
             });

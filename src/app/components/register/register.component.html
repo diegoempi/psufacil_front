@@ -1,7 +1,7 @@
 <nav-p  [identity]="identity"></nav-p>
 <div class="container" id="header">
     <div class="row"> 
-        <div class="col-lg-12"> 
+        <div class="col-lg-8"> 
             <div class="jumbotron">
                 <h3>{{ title }}</h3>
                 <div class="col-md-12">
@@ -15,19 +15,19 @@
                             !No te has identificado correctamente! 
                         </div>
                     
-                        <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7 no-padding"> 
+                        <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-12 no-padding"> 
                             <p>
-                                <label>Nombre:(*)</label>  
+                                <label>Nombre alumno:(*)</label>  
                                 <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required placeholder="Ingresa tu nombre">
                                 <span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>
                             </p>
                             <p>
-                                <label>Apellidos:(*)</label>  
+                                <label>Apellidos alumno:(*)</label>  
                                 <input type="text" class="form-control" name="apellido" #apellido="ngModel" [(ngModel)]="user.apellido" required placeholder="Ingresa tus apellidos">
                                 <span class="text-danger" *ngIf="!apellido.valid && apellido.touched">Los apellidos no son válidos</span>
                             </p>
                             <p>
-                                <label>Rut:(*)</label>  
+                                <label>Rut alumno:(*)</label>  
                                 <input type="text" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required placeholder="Ingresa tu rut" (keyup)="validateRut()">
                                 <span class="text-danger" *ngIf="!rut.valid && rut.touched">Debes ingresar rut</span>
                                 <span class="text-danger" *ngIf="!validaRut && rut.touched && rut.valid">El rut no es válido</span>
@@ -38,17 +38,17 @@
                                 <span class="text-danger" *ngIf="!password.valid && password.touched">La contraseña no es válida</span>
                             </p>                        
                             <p>
-                                <label>Email:(*)</label>  
+                                <label>Email alumno:(*)</label>  
                                 <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
                                 <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
                             </p>
                             <p>
-                                <label>Fecha de Nacimiento:(*)</label>
+                                <label>Fecha de Nacimiento alumno:(*)</label>
                                 <input type="date" class="form-control" name="fecha_de_nacimiento" #fecha_de_nacimiento="ngModel" [(ngModel)]="user.fecha_de_nacimiento" required>
                                 <span class="text-danger" *ngIf="!fecha_de_nacimiento.valid && fecha_de_nacimiento.touched">La fecha de nacimiento no es válido</span>
                             </p>
                             <p>
-                                <label>Regiones:(*)</label>
+                                <label>Region:(*)</label>
                                     <select name="region" #region="ngModel" [(ngModel)]="user.region" class="form-control" (change)="getComunas()" required>
                                         <option value="">Seleccione Región</option>
                                         <option value="{{ region.codRegion }}" *ngFor="let region of regiones">
@@ -81,9 +81,47 @@
                                 <label>Código PSU:</label>  
                                 <input type="text" class="form-control" name="codigo_psu" #codigo_psu="ngModel" [(ngModel)]="user.codigo_psu" placeholder="Ingresa tu código psu">
                             </p>
-                            <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+                            <hr>
+                            <p>
+                                <label>Nombre apoderado:(*)</label>
+                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
+                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                            </p>
+                            <p>
+                                <label>Apellidos apoderado:(*)</label>
+                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
+                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                            </p>
+                            <p>
+                                <label>Email apoderado:(*)</label>
+                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
+                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                            </p>
+                            <p>
+                                <label>Télefono apoderado:(*)</label>
+                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
+                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                            </p>
+
+                            <input type="submit" value="Registrar" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+                        </form>
+                        <form name="btnPago" method="post" action="https://webpay3g.transbank.cl/filtroUnificado/buttonService">
+                            <input type="hidden" name="buttonId" value="fa49d5dbb9a5d955784d8b9f0625c55c"/>
+                            <input type="image" src="https://www.transbank.cl/public/img/botonwebpay.gif"/>
                         </form>
                     </div>
+                    <br>
+                    <div class="col-md-12">
+                        ¿Ya tienes cuenta? 
+                        <a [routerLink]="['/login']" routerLinkActive="active" style="color: #1FA0E5">
+                            <i class="fas fa-sign-in-alt "></i> Acceder.
+                        </a>
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="jumbotron">
+                <img src="http://noticias.universia.cl/net/images/educacion/b/ba/ban/banner.jpg" alt="..." width="200" class="Responsive image">
             </div>
         </div>
     </div>

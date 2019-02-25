@@ -16,6 +16,7 @@ import { AuthInterceptor } from "./interceptors/auth-interceptor";
 
 import { LocalizacionService } from "./services/localizacion.service";
 import { VideosService } from "./services/videos.service";
+import { GlobalService } from "./services/global";
 
 //componentes
 import { AppComponent } from './app.component';
@@ -70,6 +71,7 @@ import { DetalleComponent } from './components/videos/detalle.component';
   providers: [
     LocalizacionService,
     VideosService,
+    GlobalService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true  }
   ],
   bootstrap: [AppComponent]

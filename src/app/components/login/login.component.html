@@ -58,12 +58,11 @@
 
 <div class="container" id="header">
     <div class="row"> 
-        <div class="col-lg-12"> 
+        <div class="col-sm-12 col-lg-8 col-md-12"> 
             <div class="jumbotron">
                 <h3>{{ title }}</h3>
-                <div class="col-md-12">
-                        <h3> </h3>
-                    
+                <div class="col-md-12 col-lg-12">
+                        <h3></h3>
                         <div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
                             !Te has identificado correctamente! Bienvenido <strong>{{ identity.name }} </strong>
                         </div>
@@ -72,27 +71,48 @@
                             !No te has identificado correctamente! 
                         </div>
                     
-                        <form #loginForm="ngForm" (ngSubmit)="onSubmit();" class="col-md-7 no-padding"> 
-                            <p>
+                        <form #loginForm="ngForm" (ngSubmit)="onSubmit();" class="col-md-12 no-padding"> 
+                            
                                 <label>RUT:</label>  
                                 <input type="rut" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required>
-                            </p>
-                            <span *ngIf="!rut.valid && rut.touched">El email no es válido</span>
-                    
-                            <p>
+                            
+                            <!--<span *ngIf="!rut.valid && rut.touched">El email no es válido</span>-->
+                            <div class="identity-alert alert alert-danger" *ngIf="!rut.valid && rut.touched">
+                                El rut no es válido
+                            </div>
+                           
                                 <label>Password:</label>  
                                 <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required>
-                                <span *ngIf="!password.valid && password.touched">La contraseña no es válida</span>
-                            </p>
-                    
-                            <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!loginForm.form.valid">
+                                <!--<span *ngIf="!password.valid && password.touched">La contraseña no es válida</span>-->
+                            
+                                <div class="identity-alert alert alert-danger" *ngIf="!password.valid && password.touched">
+                                    La contraseña no es válida
+                                </div>
+                            
+                    <br>
+                            <input type="submit" value="Entrar" class="btn btn-primary" style="background-color: #1FA0E5">
                     
                         </form>
+                    </div><br>
+                    <div class="col-md-12 col-lg-12">
+                        ¿No tienes cuenta? 
+                        <a [routerLink]="['/register']" routerLinkActive="active" style="color: #1FA0E5">
+                            <i class="fas fa-user-plus "></i> Regístrate.
+                        </a>
                     </div>
+
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-4 col-md-12">
+            <div class="jumbotron">
+                <img src="http://noticias.universia.cl/net/images/educacion/b/ba/ban/banner.jpg" alt="..." width="200" class="Responsive image">
             </div>
         </div>
     </div>
 </div>
+
+
+      
 <!--
 <div class="row">
 <div class="container">

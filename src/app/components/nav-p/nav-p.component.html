@@ -4,6 +4,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav navbar-right" *ngIf="identity == null">
                 <li class="nav-item">
@@ -17,10 +18,10 @@
                     </a>   
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" *ngIf="identity!=null">
+            <ul class="nav navbar-nav navbar-right" *ngIf="identity != null">
                 <li class="nav-item">
                     <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">
-                        <i class="fas fa-home"></i> Home
+                        <i class="fas fa-home"></i> Home 
                     </a>   
                 </li>
                 <li class="nav-item">
@@ -29,14 +30,14 @@
                     </a>   
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto" *ngIf="identity!=null" style="margin-right: 10%;">
+            <ul class="navbar-nav ml-auto" *ngIf="identity != null" style="margin-right: 10%;">
                 <li class="nav-item">
                     <a [routerLink]="['/admin']" routerLinkActive="active" class="nav-link">
                         <i class="fas fa-clipboard"></i> Admin
                     </a>   
                 </li>
                 <li class="nav-item">
-                    <a [routerLink]="['/user/adjust',id_user.sub]" routerLinkActive="active" class="nav-link">
+                    <a [routerLink]="['/user/adjust']" routerLinkActive="active" class="nav-link">
                         <i class="fas fa-wrench"></i> Ajustes
                     </a>                             
                 </li>

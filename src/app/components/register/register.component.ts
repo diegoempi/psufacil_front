@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   ) {
 
     this.title = 'Registrate';
-    this.user = new User(1,"Patricio","Seguel Moya","daster@gmail.com","5","5101","1537","1986-11-13","","","123456","16.310.12","user");
+    this.user = new User(1,"","","","","","","","","","","","user");
 
     this.localizacion.getRegion()
     .subscribe(respRegiones => {

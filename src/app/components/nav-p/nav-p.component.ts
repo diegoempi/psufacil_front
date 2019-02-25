@@ -11,7 +11,6 @@ import { Location } from '@angular/common';
 })
 
 export class NavComponent implements OnInit {
-    public id_user;  
     @Input() identity;
 
     constructor( public _router: Router, public _location: Location ){
@@ -19,8 +18,7 @@ export class NavComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.id_user = this.identity;
-        console.log(this.identity);
+        
     }
 
   }
