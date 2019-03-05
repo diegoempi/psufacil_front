@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       private _userService: UserService,
       private _globalService: GlobalService
   ) {
-      this.title = 'Identificate';
+      this.title = 'Identifícate';
       this.user = {
         "rut":"",
         "password":"",
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
 
           if( this.identity.status == null){
             this.identity = null;
-            this.code = 402;
+            this.code = 401;
             this._globalService.alertSweet( this.code );
           }else{
 
@@ -100,8 +100,16 @@ export class LoginComponent implements OnInit {
                         //guardo token en ls
                         localStorage.setItem( 'token', JSON.stringify( this.token ));
                         this.formValues.resetForm();
-                        //redirecciono a home
-                        this._router.navigate([ "/home" ]);
+
+                        this.code = 201;
+                        this._globalService.alertSweet( this.code );
+                        
+/*                        setTimeout(() => {
+                          //this._router.navigate([ "/home" ]);
+                          //this.timeout();
+                      }, 2000);
+*/
+                        
                       }
                     }
                   },

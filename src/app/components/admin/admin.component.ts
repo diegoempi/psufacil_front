@@ -32,11 +32,11 @@ export class AdminComponent implements OnInit {
 
     redirectIfIdentity(){
         this.identity = this._userService.getIdentity();
-
-        console.log( this.identity );
-        
+       
         if( this.identity == null ) {
           this._router.navigate([ "/login" ]);
+        }else if( this.identity.role == 'user' ){
+            this._router.navigate([ "/home" ]);
         }
     
     }

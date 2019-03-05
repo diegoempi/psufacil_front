@@ -5,6 +5,7 @@ import { LocalizacionService } from "../../services/localizacion.service";
 import { User } from "../../models/user";
 import swal from'sweetalert2';
 import * as rutHelpers from 'rut-helpers';
+import { GlobalService } from "../../services/global";
 
 @Component({
   selector: 'app-register',
@@ -27,16 +28,19 @@ export class RegisterComponent implements OnInit {
   public disableComuna = true;
   public disableColegio = true;
   public validaRut;
+  public code;
   
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private localizacion: LocalizacionService
+    private localizacion: LocalizacionService,
+    private _globalService: GlobalService
   ) {
 
     this.title = 'Registrate';
-    this.user = new User(1,"","","","","","","","","","","","user");
+    this.user = new User(1,"PruebaGratis","Seguel","PruebaGratis@gmail.com","13","13201","10452","13-11-1986","","","123456","16310123","8","+56966026468","PruebaGratis","PruebaGratis","PruebaGratis@gmail.com","+56966026468","user");
+    
 
     this.localizacion.getRegion()
     .subscribe(respRegiones => {
@@ -60,17 +64,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
+
     this._userService.register( this.user )
         .subscribe(
             response => {
                 this.status = response;
 
                 if( this.status.status == 'error' ){
-                  swal({
-                    type: 'error',
-                    title: 'Error',
-                    text: this.status.msg
-                  })
+                  this.code = 402;
+                  this._globalService.alertSweet( this.code );
                 }else{
                   /*swal({
                     type: 'success',
@@ -91,13 +93,14 @@ export class RegisterComponent implements OnInit {
                     }
                   })
 
-                  this.user = new User(1,"","","","","","","","","","","","user");
+                  this.user = new User(1,"","","","","","","","","","","","","","user","","","","");
 
 
                 }
             },
             error => {
-                console.log(<any>error)
+              this.code = 501;
+              this._globalService.alertSweet( this.code );
             }
         )
   }

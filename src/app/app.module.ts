@@ -38,6 +38,7 @@ import { VideosListaComponent } from "./components/videos/videoslista.component"
 import { AdminVideoComponent } from './components/admin/adminVideo.component';
 
 import { DetalleComponent } from './components/videos/detalle.component';
+import { MatriculaComponent } from './components/matricula/matricula.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { DetalleComponent } from './components/videos/detalle.component';
     AdminCapituloComponent,
     VideosListaComponent,
     AdminVideoComponent,
-    DetalleComponent
+    DetalleComponent,
+    MatriculaComponent
   ],
   imports: [
     BrowserModule,

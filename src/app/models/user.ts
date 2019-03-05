@@ -12,6 +12,12 @@ export class User{
         public fecha_de_creacion: string,
         public password: string,
         public rut: string,
+        public digito_verificador: string,
+        public telefono:string,
+        public nombreApoderado: string,
+        public apellidosApoderado: string,
+        public emailApoderado: string,
+        public telefonoApoderado: string,
         public role: string
     ){}
 }

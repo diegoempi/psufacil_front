@@ -1,25 +1,131 @@
 <nav-p  [identity]="identity"></nav-p>
 <div class="container" id="header">
+    <div class="jumbotron">
+        <h3>{{ title }}</h3>
+        <hr>
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-12 no-padding"> 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre alumno:<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">(*)</span></label>
+                    <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required placeholder="Ingresa tu nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Apellidos alumno:<span class="text-danger" *ngIf="!apellido.valid && apellido.touched">(*)</span></label>
+                    <input type="text" class="form-control" name="apellido" #apellido="ngModel" [(ngModel)]="user.apellido" required placeholder="Ingresa tus apellidos">
+                </div>
+                <div class="form-group col-md-5">
+                    <label>RUT alumno:<span class="text-danger" *ngIf="!rut.valid && rut.touched">(*)</span></label> 
+                    <input type="text" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required placeholder="Ingresa tu rut" (keyup)="validateRut()">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Dígito:<span class="text-danger" *ngIf="!digito_verificador.valid && digito_verificador.touched">(*)</span></label> 
+                    <input type="text" class="form-control" name="digito_verificador" #digito_verificador="ngModel" [(ngModel)]="user.digito_verificador" required placeholder="Ingresa tu digito verificador">
+                    </div>
+                <div class="form-group col-md-6">
+                    <label>Contraseña:<span class="text-danger" *ngIf="!password.valid && password.touched">(*)</span></label>  
+                    <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required placeholder="Ingresa tu contraseña">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Email alumno:<span class="text-danger" *ngIf="!email.valid && email.touched">(*)</span></label>  
+                    <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Fecha de nacimiento:<span class="text-danger" *ngIf="!fecha_de_nacimiento.valid && fecha_de_nacimiento.touched">(*)</span></label>
+                    <input type="date" class="form-control" name="fecha_de_nacimiento" #fecha_de_nacimiento="ngModel" [(ngModel)]="user.fecha_de_nacimiento" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Telefono alumno:<span class="text-danger" *ngIf="!telefono.valid && telefono.touched">(*)</span></label>
+                    <input type="text" class="form-control" name="telefono" #telefono="ngModel" [(ngModel)]="user.telefono" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Region alumno:<span class="text-danger" *ngIf="!region.valid && region.touched">(*)</span></label>
+                    <select name="region" #region="ngModel" [(ngModel)]="user.region" class="form-control" (change)="getComunas()" required>
+                        <option value="">Seleccione Región</option>
+                        <option value="{{ region.codRegion }}" *ngFor="let region of regiones">
+                            Region {{ region.codRegion }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Comuna alumno:<span class="text-danger" *ngIf="!comuna.valid && comuna.touched">(*)</span></label>
+                    <select name="comuna" #comuna="ngModel" [(ngModel)]="user.comuna" class="form-control" (change)="getColegios()" disabled="{{ disableComuna }}" required>
+                        <option value="">Seleccione Comuna</option>
+                        <option value="{{ comuna.id }}" *ngFor="let comuna of comunas">
+                            Comuna {{ comuna.nom_comuna }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Colegio alumno:<span class="text-danger" *ngIf="!colegio.valid && colegio.touched">(*)</span></label>
+                    <select name="colegio" #colegio="ngModel" [(ngModel)]="user.colegio" class="form-control" disabled="{{ disableColegio }}" required>
+                        <option value="">Seleccione Colegio</option>
+                        <option value="{{ colegio.id }}" *ngFor="let colegio of colegios">
+                            {{ colegio.nombre }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre apoderado:<span class="text-danger" *ngIf="!nombreApoderado.valid && nombreApoderado.touched">(*)</span></label>
+                    <input type="text" class="form-control" name="nombreApoderado" #nombreApoderado="ngModel" [(ngModel)]="user.nombreApoderado" required placeholder="Ingresa nombre apoderado">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Apellidos apoderado:<span class="text-danger" *ngIf="!apellidosApoderado.valid && apellidosApoderado.touched">(*)</span></label>
+                    <input type="text" class="form-control" name="apellidosApoderado" #apellidosApoderado="ngModel" [(ngModel)]="user.apellidosApoderado" required placeholder="Ingresa apellidos apoderado">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Email apoderado:<span class="text-danger" *ngIf="!emailApoderado.valid && emailApoderado.touched">(*)</span></label>
+                    <input type="email" class="form-control" name="emailApoderado" #emailApoderado="ngModel" [(ngModel)]="user.emailApoderado" required placeholder="Ingresa email de apoderado">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Télefono apoderado:<span class="text-danger" *ngIf="!telefonoApoderado.valid && telefonoApoderado.touched">(*)</span></label>
+                    <input type="text" class="form-control" name="telefonoApoderado" #telefonoApoderado="ngModel" [(ngModel)]="user.telefonoApoderado" required placeholder="Ingresa telefono de apoderado">
+                </div>
+            </div>
+            <div class="identity-alert alert alert-danger" *ngIf="!registerForm.valid && registerForm.touched">
+                    Falta ingresar datos (*)
+            </div>
+            <input type="submit" value="Registrar" class="btn btn-primary" [disabled]="!registerForm.form.valid">
+        </form>
+        <div class="col-md-12">
+            ¿Ya tienes cuenta? 
+            <a [routerLink]="['/login']" routerLinkActive="active" style="color: #1FA0E5">
+                <i class="fas fa-sign-in-alt "></i> Acceder.
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--
+
+
     <div class="row"> 
-        <div class="col-lg-8"> 
+        <div class="col-lg-12"> 
             <div class="jumbotron">
                 <h3>{{ title }}</h3>
                 <div class="col-md-12">
                         <h3> </h3>
                     
                         <div class="identity-alert alert alert-success" *ngIf="identity && identity.sub">
-                            !Te has identificado correctamente! Bienvenido {{ identity.email }}
+                            !Te has identifícado correctamente! Bienvenido {{ identity.email }}
                         </div>
                     
                         <div class="identity-alert alert alert-danger" *ngIf="identity && identity.data">
-                            !No te has identificado correctamente! 
+                            !No te has identifícado correctamente! 
                         </div>
                     
                         <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-12 no-padding"> 
                             <p>
-                                <label>Nombre alumno:(*)</label>  
+                                <label>Nombre alumno:<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">(*)</span></label>  
                                 <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required placeholder="Ingresa tu nombre">
-                                <span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>
                             </p>
                             <p>
                                 <label>Apellidos alumno:(*)</label>  
@@ -84,27 +190,28 @@
                             <hr>
                             <p>
                                 <label>Nombre apoderado:(*)</label>
-                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
-                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                                <input type="text" class="form-control" name="nombreApoderado" #nombreApoderado="ngModel" [(ngModel)]="user.nombreApoderado" required placeholder="Ingresa nombre apoderado">
+                                <span class="text-danger" *ngIf="!nombreApoderado.nombreApoderado && email.touched">El nombre del apoderado no es válido.</span>
                             </p>
                             <p>
                                 <label>Apellidos apoderado:(*)</label>
-                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
-                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                                <input type="text" class="form-control" name="apellidosApoderado" #apellidosApoderado="ngModel" [(ngModel)]="user.apellidosApoderado" required placeholder="Ingresa apellidos apoderado">
+                                <span class="text-danger" *ngIf="!apellidosApoderado.valid && apellidosApoderado.touched">El apellido del apoderado no es válido.</span>
                             </p>
                             <p>
                                 <label>Email apoderado:(*)</label>
-                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
-                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                                <input type="email" class="form-control" name="emailApoderado" #emailApoderado="ngModel" [(ngModel)]="user.emailApoderado" required placeholder="Ingresa email de apoderado.">
+                                <span class="text-danger" *ngIf="!emailApoderado.valid && emailApoderado.touched">El email del apoderado no es válido</span>
                             </p>
                             <p>
                                 <label>Télefono apoderado:(*)</label>
-                                <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" required placeholder="Ingresa tu email">
-                                <span class="text-danger" *ngIf="!email.valid && email.touched">El apellido no es válido</span>
+                                <input type="text" class="form-control" name="telefonoApoderado" #telefonoApoderado="ngModel" [(ngModel)]="user.telefonoApoderado" required placeholder="Ingresa tu email">
+                                <span class="text-danger" *ngIf="!telefonoApoderado.valid && telefonoApoderado.touched">El apellido no es válido</span>
                             </p>
 
                             <input type="submit" value="Registrar" class="btn btn-primary" [disabled]="!registerForm.form.valid">
                         </form>
+
                         <form name="btnPago" method="post" action="https://webpay3g.transbank.cl/filtroUnificado/buttonService">
                             <input type="hidden" name="buttonId" value="fa49d5dbb9a5d955784d8b9f0625c55c"/>
                             <input type="image" src="https://www.transbank.cl/public/img/botonwebpay.gif"/>
@@ -119,10 +226,11 @@
                     </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-12">
             <div class="jumbotron">
                 <img src="http://noticias.universia.cl/net/images/educacion/b/ba/ban/banner.jpg" alt="..." width="200" class="Responsive image">
             </div>
         </div>
+
     </div>
-</div>
+</div>-->
