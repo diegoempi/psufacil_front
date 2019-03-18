@@ -1,28 +1,29 @@
 <nav-p [identity]="identity"></nav-p>
-<div class="container" id="header">    <div class="row"><div class="col-md-12">
-  
-    <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
-        <ol class="breadcrumb primary-color" style="    margin-right: 15px;
-        padding: 10px;
-        margin-bottom: 0;">
-          <li style="margin-left: 20px;"class="breadcrumb-item"><strong>Home</strong></li>
-        </ol>
-    </nav>
-    </div></div>
+<div class="container" id="header">
     <div class="row">
-        <div class="col-md-8">
-            <div class="jumbotron">    
-                <p class="font-italic">Bienvenido <strong>{{ identity.name }}</strong> a Premate Academia Psu Online.</p>
-            </div>
-          </div>
-
-          <div class="col-md-4" style="padding-left:0 !important;">
-              <div class="col">
-                  <div class="jumbotron" style="padding: 5px !important;">
-                      <img src="http://noticias.universia.cl/net/images/educacion/b/ba/ban/banner.jpg" alt="..." width="200" class="Responsive image">
-                  </div>
-                  </div>
-          </div>
+        <div class="col-md-12">  
+            <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+                <ol class="breadcrumb primary-color" style="    margin-right: 15px;
+                padding: 10px;
+                margin-bottom: 0;">
+                <li style="margin-left: 20px;"class="breadcrumb-item"><strong>Inicio</strong></li>
+                </ol>
+            </nav>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-8" style="margin-bottom: 2rem !important;">
+            <div class="jumbotron" style="height:100%;">    
+                <div style="font-size: 20px;">Bienvenido <strong>{{ identity.name }}</strong> a PREMATE | ACADEMIA PSU ONLINE.</div>
+            </div>
+        </div>
 
+        <div class="col-md-4" style="padding-left:0 !important;">
+            <div class="col">
+                <div class="jumbotron" style="padding: 5px !important;">
+                    <img src="../../../assets/img/home/diapositiva.png" alt="..." width="200" class="Responsive image">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

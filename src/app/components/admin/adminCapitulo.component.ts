@@ -46,7 +46,7 @@ export class AdminCapituloComponent implements OnInit {
     ){
         this.url = GLOBAL.url;
         this.title = 'Administrador Capitulos';
-        this.capitulo = new Capitulo(1,'','','','');
+        this.capitulo = new Capitulo(1,'','','','','0');
     }
 
     ngOnInit() {
@@ -60,7 +60,7 @@ export class AdminCapituloComponent implements OnInit {
            
         if( this.token != null && this.token != ''){
            
-            this._videosService.obtUnidades( this.token )
+            this._videosService.obtAdmUnidades()
                 .subscribe(respRegiones => {
                     this.objUnidades  = respRegiones;
                     this.unidades     = this.objUnidades.data;
@@ -82,7 +82,7 @@ export class AdminCapituloComponent implements OnInit {
            
         if( this.token != null && this.token != ''){
            
-            this._videosService.obtCapitulos( this.token )
+            this._videosService.obtAdmCapitulos( this.token )
                 .subscribe(respRegiones => {
                     this.objCapitulos  = respRegiones;
                     this.capitulos     = this.objCapitulos.data;
@@ -215,6 +215,7 @@ export class AdminCapituloComponent implements OnInit {
         formData.append('descripcion', this.capitulo.descripcion);
         formData.append('unidad', this.capitulo.unidad);
         formData.append('authorization', this.token);
+        formData.append('suscripcion', this.capitulo.suscripcion);
           
 
         this._videosService.IngCapitulo(formData)

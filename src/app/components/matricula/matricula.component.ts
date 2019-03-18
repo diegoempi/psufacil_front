@@ -26,7 +26,12 @@ export class MatriculaComponent implements OnInit {
       private _userService: UserService,
       private _globalService: GlobalService
   ) {
-      this.title = 'Matricula';
+      this.title = 'Matricúlate aquí';
+      this.user = {
+        "rut":"",
+        "password":"",
+        "getIdentity":"true"
+      }
   }
 
   ngOnInit() {
@@ -41,4 +46,9 @@ export class MatriculaComponent implements OnInit {
       }
 
   }
+
+  onSubmit(){
+
+  }
+  
 }

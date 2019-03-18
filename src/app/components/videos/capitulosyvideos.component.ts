@@ -21,6 +21,7 @@ export class CapitulosYVideosComponent implements OnInit {
   public objVideos;
   public token;
   public title;
+  public loading: boolean;
 
   constructor( 
     private _userService: UserService,
@@ -28,7 +29,7 @@ export class CapitulosYVideosComponent implements OnInit {
     private aRoute: ActivatedRoute,
     private _videosService: VideosService
   ) { 
-
+    this.loading = true;
   }
 
   ngOnInit() {
@@ -55,7 +56,6 @@ export class CapitulosYVideosComponent implements OnInit {
 
     getCapitulos( params ){
 
-        console.log( params.id );
         this.token = this._userService.getToken();
  
         //let formData = new FormData();
@@ -64,8 +64,12 @@ export class CapitulosYVideosComponent implements OnInit {
 
         let formData = {
             unidad: params.id,
-            authorization: this.token  
+            authorization: this.token,
+            usr_suscripcion: this.identity.usr_suscripcion
         }
+
+        console.log( 'formData' );
+        console.log( formData );
 
        
         if( this.token != null && this.token != ''){
@@ -76,7 +80,7 @@ export class CapitulosYVideosComponent implements OnInit {
                     this.capitulos     = this.objCapitulos.data;
 
                     
-                    console.log( this.capitulos );
+                    this.loading = false;
 
                     if(this.objCapitulos.status != 'success'){
                         this._router.navigate([ "/home" ]);

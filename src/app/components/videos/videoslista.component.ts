@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 import { UserService }  from "../../services/user.service";
 import { VideosService }  from "../../services/videos.service";
 import { NavComponent } from "../nav-p/nav-p.component";
+import { SafePipe } from '../../pipes/globalPipes';
 
 @Component({
   selector: 'app-videoslista',
@@ -21,13 +22,17 @@ export class VideosListaComponent implements OnInit {
   public objVideos;
   public token;
   public title;
+  public selectedVideo;
+  public loading = true;
 
   constructor( 
     private _userService: UserService,
     private _router: Router,
     private aRoute: ActivatedRoute,
     private _videosService: VideosService
-  ) { 
+  ) {
+
+    this.loading = true;
 
   }
 
@@ -47,6 +52,7 @@ export class VideosListaComponent implements OnInit {
 
   redirectIfIdentity(){
     this.identity = this._userService.getIdentity();
+    
     if( this.identity == null ) {
       this._router.navigate([ "/login" ]);
     }
@@ -98,9 +104,11 @@ export class VideosListaComponent implements OnInit {
             .subscribe(respVideos => {
                 this.objVideos  = respVideos;
                 this.videos     = this.objVideos.data;
+       
+                this.loading = false;
 
-                console.log( this.videos);
-        
+                this.selectedVideo = this.videos[0].id;
+
                 if(this.objVideos.status != 'success'){
                     this._router.navigate([ "/home" ]);
                 }

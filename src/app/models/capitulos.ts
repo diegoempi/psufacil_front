@@ -4,6 +4,7 @@ export class Capitulo{
         public nombre: string,
         public descripcion: string,
         public unidad: string,
-        public imagen: string
+        public imagen: string,
+        public suscripcion: string
     ){}
 }

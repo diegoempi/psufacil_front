@@ -17,6 +17,8 @@ import { AuthInterceptor } from "./interceptors/auth-interceptor";
 import { LocalizacionService } from "./services/localizacion.service";
 import { VideosService } from "./services/videos.service";
 import { GlobalService } from "./services/global";
+import { RevisionService } from "./services/revision.service";
+import { UserService } from "./services/user.service";
 
 //componentes
 import { AppComponent } from './app.component';
@@ -34,8 +36,14 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminUnidadComponent } from './components/admin/adminUnidad.component';
 import { AdminCapituloComponent } from './components/admin/adminCapitulo.component';
 import { VideosListaComponent } from "./components/videos/videoslista.component";
+import { RevisionComponent } from "./components/revision/revision.component";
+import { RevisionListaComponent } from "./components/revision/revisionlista.component";
+import { RevisionDetalleComponent } from "./components/revision/revisiondetalle.component";
 
 import { AdminVideoComponent } from './components/admin/adminVideo.component';
+import { LoadingComponent } from './components/shared/loading.component';
+
+import { SafePipe } from './pipes/globalPipes';
 
 import { DetalleComponent } from './components/videos/detalle.component';
 import { MatriculaComponent } from './components/matricula/matricula.component';
@@ -60,7 +68,12 @@ import { MatriculaComponent } from './components/matricula/matricula.component';
     VideosListaComponent,
     AdminVideoComponent,
     DetalleComponent,
-    MatriculaComponent
+    MatriculaComponent,
+    SafePipe,
+    LoadingComponent,
+    RevisionComponent,
+    RevisionListaComponent,
+    RevisionDetalleComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +87,8 @@ import { MatriculaComponent } from './components/matricula/matricula.component';
     LocalizacionService,
     VideosService,
     GlobalService,
+    RevisionService,
+    UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true  }
   ],
   bootstrap: [AppComponent]

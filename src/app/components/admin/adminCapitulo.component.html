@@ -17,23 +17,32 @@
                 <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
             </div>
             <div class="form-group">
-                    <label><strong>Unidad perteneciente.</strong></label><br>
-                    
-                    <select name="cars" class="form-control" name="unidadCapitulo" #unidadCapitulo="ngModel" [(ngModel)]="capitulo.unidad"  placeholder="Unidad capitulo" disabled="{{ loaderUnidad }}">
-                            <option value="">Seleccione Unidad perteneciente</option>
-                            <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
-                                    {{ unidad.nombre }}
-                            </option>
-                    </select>
-                    <small class="form-text text-muted">Unidad perteneciente.</small>
-                    <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
-                </div>
+                <label><strong>Unidad perteneciente.</strong></label><br>
+                <select name="cars" class="form-control" name="unidadCapitulo" #unidadCapitulo="ngModel" [(ngModel)]="capitulo.unidad"  placeholder="Unidad capitulo" disabled="{{ loaderUnidad }}">
+                        <option value="">Seleccione Unidad perteneciente</option>
+                        <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
+                                {{ unidad.nombre }}
+                        </option>
+                </select>
+                <small class="form-text text-muted">Unidad perteneciente.</small>
+                <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+            </div>
             <div class="form-group">
-                    <label for="file"><strong>Imagen del capitulo.</strong></label>
-                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
-                    <input type="file" class="form-control" (change)="fileChange($event)" name="imagenCapitulo" #imagenCapitulo="ngModel" [(ngModel)]="capitulo.imagen" placeholder="Upload file capitulo">
-                    <small class="form-text text-muted">Imagen perteneciente al capitulo.</small>
-                    </div>
+                <label for="file"><strong>Imagen del capitulo.</strong></label>
+                <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                <input type="file" class="form-control" (change)="fileChange($event)" name="imagenCapitulo" #imagenCapitulo="ngModel" [(ngModel)]="capitulo.imagen" placeholder="Upload file capitulo">
+                <small class="form-text text-muted">Imagen perteneciente al capitulo.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="file"><strong>Suscripción.</strong></label><br>
+                <select name="gender" class="form-control" [(ngModel)]="capitulo.suscripcion">
+                    <option [value]="'0'" selected>Gratis</option>
+                    <option [value]="'1'">Anual</option>
+                    <option [value]="'2'">Intensivo</option>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Crear capitulo</button>
         </form>
     </div>

@@ -17,15 +17,28 @@
                 <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
             </div>
             <div class="form-group">
-                    <label for="file"><strong>Imagen de Unidad.</strong></label><br>
-                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
-                    <input type="file" class="form-control" (change)="fileChange($event)" name="imagenUnidad" #imagenUnidad="ngModel" [(ngModel)]="unidad.imagen" placeholder="Upload file">
-                    <small class="form-text text-muted">Imagen perteneciente a la unidad.</small>
-                  </div>
+                <label for="file"><strong>Imagen de Unidad.</strong></label><br>
+                <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                <input type="file" class="form-control" (change)="fileChange($event)" name="imagenUnidad" #imagenUnidad="ngModel" [(ngModel)]="unidad.imagen" placeholder="Upload file">
+                <small class="form-text text-muted">Imagen perteneciente a la unidad.</small>
+            </div>
+            <div class="form-group">
+                <label for="file"><strong>Suscripción.</strong></label><br>
+                <!--<select name="cars" class="form-control" name="suscripcionUnidad" #suscripcionUnidad="ngModel" [(ngModel)]="unidad.suscripcion"  placeholder="Suscripcion">
+                    <option [value]="i" [attr.selected]="i===0" *ngFor="let suscripcion of suscripciones;let i = index">{{ suscripcion }}</option>
+                </select>-->
+                <select name="gender" class="form-control" [(ngModel)]="unidad.suscripcion">
+                    <option [value]="'0'" selected>Gratis</option>
+                    <option [value]="'1'">Anual</option>
+                    <option [value]="'2'">Intensivo</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Crear unidad</button>
         </form>
     </div>
-</div><br><hr>
+</div>
+<!--
+<br><hr>
 <div class="row">
     <div class="col-md-12">
         <h3>Unidades creadas:</h3>
@@ -53,3 +66,4 @@
 
     </div>
 </div>
+-->

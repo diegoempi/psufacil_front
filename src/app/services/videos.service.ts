@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import "rxjs/add/operator/map";
 import { Observable } from 'rxjs/Observable';
 import { GLOBAL } from './global';
-//import { UserService }  from "./user.service";
+import { UserService }  from "./user.service";
 
 
 @Injectable({
@@ -17,25 +17,56 @@ export class VideosService{
 
     constructor( 
         private _http: HttpClient,
-        //private _userService: UserService
+        private _userService: UserService
 
     ){
        this.url = GLOBAL.url;
     }
 
     //obtengo unidades 
-    obtUnidades( token ){
-        let params = "authorization=" + token;
-        let url2 = this.url + '/obt/unidades';
+    obtUnidades(){
+        let token       = this._userService.getToken();
+        let identity    = this._userService.getIdentity();
+        let params      = "authorization=" + token + "&usr_suscripcion="+ identity.usr_suscripcion;
+        let url2        = this.url + '/obt/unidades';
 
         return this._http.post( url2,params,  { headers: new HttpHeaders()
             .set('Content-Type', 'application/x-www-form-urlencoded') })
             .map(resp => {console.log(resp);return resp;  });
     }
 
+    obtAdmUnidades(){
+        let token       = this._userService.getToken();
+        let identity    = this._userService.getIdentity();
+        let params      = "authorization=" + token;
+        let url2        = this.url + '/obt/adm/unidades';
+
+        return this._http.post( url2,params,  { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
+            .map(resp => {console.log(resp);return resp;  });
+    }
+
+
+
+    obtCapitulosDetalle( formData ){
+
+        let url2 = this.url + '/obt/capitulos';
+
+        let params = "authorization="+formData.authorization+"&unidad="+formData.unidad+"&usr_suscripcion="+formData.usr_suscripcion;
+
+        return this._http.post( url2,params,  { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
+            .map(resp => {;return resp;  });
+
+    }
+
+
+
+
     obtListaVideos( token, capitulo ){
 
-        let params = "authorization="+token+"&capitulo="+capitulo;
+        let identity    = this._userService.getIdentity();
+        let params = "authorization="+token+"&capitulo="+capitulo+"&usr_suscripcion="+identity.usr_suscripcion;
 
         let url2 = this.url + '/obt/videos';
 
@@ -60,26 +91,12 @@ export class VideosService{
             .map(resp => {;return resp;  });
     }
 
-    obtCapitulosDetalle( formData ){
-
-        let url2 = this.url + '/obt/capitulos';
-
-        let params = "authorization="+formData.authorization+"&unidad="+formData.unidad;
-
-        return this._http.post( url2,params,  { headers: new HttpHeaders()
-            .set('Content-Type', 'application/x-www-form-urlencoded') })
-            .map(resp => {;return resp;  });
-
-    }
-
-
-
     //obtengo capitulo
-    obtCapitulos( token ){
+    obtAdmCapitulos( token ){
 
         let params = "authorization="+token;
 
-        let url2 = this.url + '/obt/capitulos';
+        let url2 = this.url + '/obt/adm/capitulos';
 
         return this._http.post( url2,params,  { headers: new HttpHeaders()
             .set('Content-Type', 'application/x-www-form-urlencoded') })
@@ -97,7 +114,7 @@ export class VideosService{
 
     ObtCapitulosForm(unidad, token){
         let params = "unidad="+unidad+'&authorization='+token;
-        let url2 = this.url + '/obt/capitulos';
+        let url2 = this.url + '/obt/adm/capitulos';
 
         return this._http.post( url2,params,  { headers: new HttpHeaders()
             .set('Content-Type', 'application/x-www-form-urlencoded') })

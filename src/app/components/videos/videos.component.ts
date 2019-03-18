@@ -17,6 +17,7 @@ export class VideosComponent implements OnInit {
   public unidades;
   public objUnidades;
   public token;
+  public loading: boolean;
 
   constructor( 
     private _userService: UserService,
@@ -25,6 +26,7 @@ export class VideosComponent implements OnInit {
     private _videosService: VideosService
   ) { 
 
+      this.loading = true;
   }
 
   ngOnInit() {
@@ -47,16 +49,17 @@ export class VideosComponent implements OnInit {
   getUnidades(){
 
     this.token = this._userService.getToken();
+
        
     if( this.token != null && this.token != ''){
        
-        this._videosService.obtUnidades( this.token )
+        this._videosService.obtUnidades( )
             .subscribe(respRegiones => {
                 this.objUnidades  = respRegiones;
                 this.unidades     = this.objUnidades.data;
 
-                console.log( this.unidades );
-        
+                //console.log( this.unidades );
+                this.loading = false;
                 if(this.objUnidades.status != 'success'){
                     this._router.navigate([ "/home" ]);
                 }

@@ -32,7 +32,7 @@ export class AdjustComponent implements OnInit {
     private _router: Router
   ) { 
 
-    this.user = new User(1,"Patricio","Seguel Moya","pato.seguel.moya@gmail.com","5","5101","1537","1986-11-13","","","123456","16.310.12","Hernan","Seguel B","hseguel@gmail.com","62696986","user");
+    this.user = new User(1,"Patricio","Seguel Moya","pato.seguel.moya@gmail.com","5","5101","1537","1986-11-13","","","123456","16310123","8","+56966026468","Hernan","Seguel B","hseguel@gmail.com","62696986","user");
 
   }
 

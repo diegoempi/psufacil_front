@@ -21,31 +21,36 @@
             <ul class="nav navbar-nav navbar-right" *ngIf="identity != null">
                 <li class="nav-item">
                     <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">
-                        <i class="fas fa-home"></i> Home 
+                        <i class="fas fa-home"></i> Inicio 
                     </a>   
                 </li>
                 <li class="nav-item">
-                    <a [routerLink]="['/videos/unidades']" routerLinkActive="active" class="nav-link">
+                    <a [routerLink]="['/videos']" routerLinkActive="active" [class.active]="activarMenu" class="nav-link">
                         <i class="fas fa-video"></i> Videos
                     </a>   
                 </li>
+                <!--<li class="nav-item">
+                    <a [routerLink]="['/revision']" routerLinkActive="active" class="nav-link">
+                        <i class="fas fa-clipboard"></i> Revisión
+                    </a>   
+                </li>-->
             </ul>
             <ul class="navbar-nav ml-auto" *ngIf="identity != null" style="margin-right: 10%;">
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a [routerLink]="['/matricula']" routerLinkActive="active" class="nav-link">
-                        <i class="fas fa-clipboard"></i> Matriculate
+                        <i class="fas fa-clipboard"></i> Matricúlate
                     </a>   
-                </li>
+                </li>-->
                 <li class="nav-item" *ngIf="identity.role == 'admin'">
                     <a [routerLink]="['/admin']" routerLinkActive="active" class="nav-link">
                         <i class="fas fa-clipboard"></i> Admin
                     </a>   
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a [routerLink]="['/user/adjust']" routerLinkActive="active" class="nav-link">
                         <i class="fas fa-wrench"></i> Ajustes
                     </a>                             
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a [routerLink]="['/login',1]" routerLinkActive="active" class="nav-link">
                         <i class="fas fa-sign-out-alt "></i> Salir

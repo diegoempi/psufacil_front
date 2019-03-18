@@ -46,17 +46,19 @@
                     <small class="form-text text-muted">Unidad perteneciente.</small>
                             <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label for="file"><strong>Imagen del video.</strong></label><br>
-                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                    
                     <input type="file" class="form-control" (change)="fileChangeImg($event)" name="imagenVideo" #imagenVideo="ngModel" [(ngModel)]="video.imagen" placeholder="Upload file video">
                     <small class="form-text text-muted">Imagen perteneciente al video.</small>
-                </div>
+                </div>-->
                 <div class="form-group">
-                    <label for="file"><strong>Material adicional</strong> (*Beta puede fallar si se utiliza)</label><br>
-                    <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
-                    <input type="file" class="form-control" (change)="fileChangeMaterial($event)" name="materialVideo" #materialVideo="ngModel" [(ngModel)]="video.material" placeholder="Upload file video">
-                    <small class="form-text text-muted">Imagen perteneciente al video.</small>
+                    <label for="file"><strong>Suscripción.</strong></label><br>
+                    <select name="gender" class="form-control" [(ngModel)]="video.suscripcion">
+                        <option [value]="'0'" selected>Gratis</option>
+                        <option [value]="'1'">Anual</option>
+                        <option [value]="'2'">Intensivo</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Crear video</button>
             </form>

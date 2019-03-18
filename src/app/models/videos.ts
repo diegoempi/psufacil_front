@@ -5,8 +5,8 @@ export class Video{
         public descripcion: string,
         public unidad: string,
         public capitulo:string,
-        public imagen: string,
         public url: string,
-        public material:string 
+        public material:string,
+        public suscripcion:string
     ){}
 }

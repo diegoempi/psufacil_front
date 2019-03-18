@@ -1,0 +1,62 @@
+<nav-p [identity]="identity"></nav-p>
+<div class="container" id="header">    
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+                    <ol class="breadcrumb primary-color" style="padding: 10px; margin-bottom: 0;">
+                        <li style="margin-left: 20px;"class="breadcrumb-item">
+                            <a [routerLink]="['/revision']">Revisión</a> / Lista / <strong>Detalle</strong>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <app-loading *ngIf="loading"></app-loading>
+                    <div class="col-md-12">
+                        <h2 class="bold">Detalle de revisión:</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="font-italic">Seleccione la alternativa correcta:</p>
+                    </div>  
+                    <div class="col-md-12 animated animatedFadeInUp fadeInUp ">
+                        <!-- ngFor -->
+                        <!--<div class="card animated animatedFadeInUp fadeInUp" style="width: 15.7rem; margin: 6px; padding: 5px;">-->
+                        <form (ngSubmit)="submit()">
+                            <div class="form-row">
+                                <div class="col-md-3" style="padding: 15px;" *ngFor="let revision of revisionDetalle">
+                                    <span style="font-size: 17px; padding-right: 10px;">{{ revision.pregunta }}:</span>
+                                    {{ revision.respuestaCorrecta }}
+                                    <div class="form-check-inline" style="margin-right: .35rem;" *ngFor='let alternativa of alternativas' >
+                                        <label>
+                                            <input type="radio" 
+                                                        name="{{ revision.id }}"
+                                                        [(ngModel)] = "respuestas[revision.id]"
+                                                        [attr.checked]="respuestas[revision.id] == alternativa ? 'checked' : null"
+                                                        [disabled]="revision.correcta == 1">
+                                            <span>
+                                                {{alternativa }} 
+                                            </span>
+                                        </label>
+                                    </div>             
+                                    <br>
+                                    <i class="fas fa-check text-success" style="font-size: 20px;" *ngIf="revision.correcta == 1"></i>
+                                    <i class="fas fa-times text-danger"  style="font-size: 20px;" *ngIf="revision.correcta == 0"></i>
+                                    <i class="far fa-circle text-primary"  style="font-size: 20px;" *ngIf="revision.correcta == 2"></i>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-secondary" (click)="onSubmit()">Enviar respuestas</button>
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>

@@ -51,8 +51,8 @@ export class AdminVideoComponent implements OnInit {
     ){
         this.url = GLOBAL.url;
         this.title = 'Administrador Videos';
-        this.unidad = new Unidad(1,'','','');
-        this.video = new Video(1,'','','','','','','');
+        this.unidad = new Unidad(1,'','','','');
+        this.video = new Video(1,'','','','','','','0');
     }
 
     ngOnInit() {
@@ -66,12 +66,11 @@ export class AdminVideoComponent implements OnInit {
            
         if( this.token != null && this.token != ''){
            
-            this._videosService.obtUnidades( this.token )
+            this._videosService.obtAdmUnidades()
                 .subscribe(respRegiones => {
                     this.objUnidades  = respRegiones;
                     this.unidades     = this.objUnidades.data;
-    
-                    console.log( this.unidades );
+
             
                     /*if(this.objUnidades.status != 'success'){
                         this._router.navigate([ "/home" ]);
@@ -91,9 +90,7 @@ export class AdminVideoComponent implements OnInit {
                 .subscribe(respVideos => {
                     this.objVideos  = respVideos;
                     this.videos     = this.objVideos.data;
-    
-                    console.log( this.unidades );
-            
+          
                     /*if(this.objUnidades.status != 'success'){
                         this._router.navigate([ "/home" ]);
                     }*/
@@ -168,7 +165,6 @@ export class AdminVideoComponent implements OnInit {
 
         this.token = this._userService.getToken();
         let formData = new FormData();
-        formData.append('imagen', this.fileToUploadImg);
         formData.append('material', this.fileToUploadMat);
         formData.append('nombre', this.video.nombre);
         formData.append('descripcion', this.video.descripcion);
@@ -176,6 +172,7 @@ export class AdminVideoComponent implements OnInit {
         formData.append('unidad', this.video.unidad);
         formData.append('capitulo', this.video.capitulo);
         formData.append('authorization', this.token);
+        formData.append('suscripcion', this.video.suscripcion);
 
         this._videosService.IngVideo(formData)
             .subscribe(data => {

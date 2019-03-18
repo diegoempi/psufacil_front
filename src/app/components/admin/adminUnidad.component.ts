@@ -28,6 +28,7 @@ export class AdminUnidadComponent implements OnInit {
     public formData:any;
     public url;
     public data:any = { status:{} };
+    public suscripciones;
 
 
     public unidades;
@@ -41,7 +42,8 @@ export class AdminUnidadComponent implements OnInit {
     ){
         this.url = GLOBAL.url;
         this.title = 'Administrador Unidades';
-        this.unidad = new Unidad(1,'','','');
+        this.unidad = new Unidad(1,'','','','0');
+        this.suscripciones = ['Gratis','Anual', 'Intensiva'];
     }
 
     ngOnInit() {
@@ -77,12 +79,15 @@ export class AdminUnidadComponent implements OnInit {
     onSubmit(){
 
         this.token = this._userService.getToken();
-        let url2 = this.url + '/ing/unidades';      
+        //let url2 = this.url + '/ing/unidades';      
         let formData = new FormData();
+
+        console.log(this.unidad);
         formData.append('imagen', this.fileToUpload);
         formData.append('nombre', this.unidad.nombre);
         formData.append('descripcion', this.unidad.descripcion);
         formData.append('authorization', this.token);
+        formData.append('suscripcion', this.unidad.suscripcion);
           
 
         this._videosService.IngUnidad(formData)

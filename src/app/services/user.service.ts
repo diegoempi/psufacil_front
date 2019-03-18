@@ -9,6 +9,7 @@ export class UserService{
     public url: string;
     public identity;
     public token;
+    public activarMenu;
 
     constructor( 
         private _http: HttpClient
