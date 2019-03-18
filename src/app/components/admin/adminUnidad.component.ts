@@ -56,7 +56,7 @@ export class AdminUnidadComponent implements OnInit {
            
         if( this.token != null && this.token != ''){
            
-            this._videosService.obtUnidades( this.token )
+            this._videosService.obtUnidades()
                 .subscribe(respRegiones => {
                     this.objUnidades  = respRegiones;
                     this.unidades     = this.objUnidades.data;
