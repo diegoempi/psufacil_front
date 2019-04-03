@@ -1,0 +1,167 @@
+<nav-p [identity]="identity"></nav-p>
+<div class="container" id="header">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+                <ol class="breadcrumb primary-color" style="    margin-right: 15px;
+                padding: 10px;
+                margin-bottom: 0;">
+                <li style="margin-left: 20px;"class="breadcrumb-item"><strong>{{ title }}</strong></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron"> 
+                <div class="col-md-12">
+                    <nav-p-admin></nav-p-admin>
+                </div>
+                <div class="col-md-12">
+                    <br>
+                    <h3>{{ title }}</h3>  
+                    <hr>        
+                </div>
+                <div class="col-md-12">
+                    <form [formGroup]="invoiceForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label><strong>Unidad perteneciente.</strong></label>
+                                <select class="form-control" formControlName="unidad" placeholder="Unidad revision" (change)="getCapChange( $event.target.value )" >
+                                        <option value="">Seleccione Unidad perteneciente</option>
+                                        <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
+                                            {{ unidad.nombre }}
+                                        </option>
+                                </select>
+                                <small class="form-text text-muted">Unidad perteneciente.</small>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label><strong>Lista perteneciente.</strong></label>
+                                <select class="form-control" formControlName="lista"  placeholder="Lista revision">
+                                        <option value="">Seleccione lista perteneciente</option>
+                                        <option value="{{ list.id }}" *ngFor="let list of listas">
+                                                {{ list.nombre }}
+                                        </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="file"><strong>Suscripción.</strong></label>
+                                <select class="form-control" formControlName="suscripcion">
+                                    <option [value]="'0'" selected>Gratis</option>
+                                    <option [value]="'1'">Anual</option>
+                                    <option [value]="'2'">Intensivo</option>
+                                </select>
+                                <small class="form-text text-muted">Plan perteneciente.</small>
+                            </div>
+                        </div>
+                        <hr>
+                        <div formArrayName="itemRows" class="row">                            
+                            <div class="col-md-3" style="padding-top: 10px;" *ngFor="let itemrow of invoiceForm.controls.itemRows['controls']; let i=index"  [formGroupName]="i">
+                                <h4>Pregunta #{{ i + 1 }}</h4>
+                                <div class="form-group">
+                                    <label>Alternativa correcta:</label>
+                                    <!--<input formControlName="itemname" class="form-control">-->
+                                    <select class="form-control" formControlName="correcta">
+                                        <option [value]="''" selected>Alternativa correcta</option>
+                                            <option [value]="'A'">A</option>
+                                            <option [value]="'B'">B</option>
+                                            <option [value]="'C'">C</option>
+                                            <option [value]="'D'">D</option>
+                                            <option [value]="'E'">E</option>
+                                        </select>
+                                    <!--<input type="text" formControlName="numero" [value]=" i + 1">-->
+                                </div>
+                                <div class="p-1">
+                                    <button *ngIf="invoiceForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger btn-xs"><i class="fas fa-minus-circle"></i>Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <button type="button" (click)="addNewRow()" class="btn btn btn-primary btn-xs text-left"><i class="fas fa-plus-circle"></i> Agregar pregunta</button>
+                            </div>  
+                            <div class="col-md-6">
+                                <button type="button" (click)="onSubmit()" class="btn btn-success btn-xs text-right"><i class="fas fa-plus-circle"></i> Crear revisión</button><br><br>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div><br><br>
+                <div class="col-md-12">
+
+                    
+                    <pre>{{ invoiceForm.value | json}}</pre>
+                </div>
+
+
+
+
+                    <!--<form [formGroup]="forma" (ngSubmit)="onSubmit()" novalidate="novalidate">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label><strong>Unidad perteneciente.</strong></label>
+                                <select class="form-control" formControlName="unidad" placeholder="Unidad revision" (change)="getCapChange( $event.target.value )" >
+                                        <option value="">Seleccione Unidad perteneciente</option>
+                                        <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
+                                            {{ unidad.nombre }}
+                                        </option>
+                                </select>
+                                <small class="form-text text-muted">Unidad perteneciente.</small>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label><strong>Lista perteneciente.</strong></label>
+                                <select class="form-control" formControlName="lista"  placeholder="Lista revision">
+                                        <option value="">Seleccione lista perteneciente</option>
+                                        <option value="{{ list.id }}" *ngFor="let list of listas">
+                                                {{ list.nombre }}
+                                        </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="file"><strong>Suscripción.</strong></label>
+                                <select class="form-control" formControlName="suscripcion">
+                                    <option [value]="'0'" selected>Gratis</option>
+                                    <option [value]="'1'">Anual</option>
+                                    <option [value]="'2'">Intensivo</option>
+                                </select>
+                                <small class="form-text text-muted">Plan perteneciente.</small>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12" formArrayName="preguntas">
+                                <div class="row">
+                                    <div class="col-md-3" *ngFor="let pregunta of forma.controls['preguntas'].controls; let i of index;">
+                                        
+                                            <input type="text" class="form-control" [formGroupName]="i">
+                                        
+                                        <!--<span>{{ i }}</span>
+                                        <select class="form-control" [formGroupName]=i>
+                                        <option [value]="''" selected>Alternativa correcta</option>
+                                            <option [value]="'A'">A</option>
+                                            <option [value]="'B'">B</option>
+                                            <option [value]="'C'">C</option>
+                                            <option [value]="'D'">D</option>
+                                            <option [value]="'E'">E</option>
+                                        </select>-->
+                <!--                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group col-md-12">
+                                <button type="button" class="btn btn-success" (click)="agregarPregunta()"><i class="fas fa-plus-circle"></i>Pregunta</button>
+                            </div>
+                            <div class="form-group col-md-12 align-self-end text-right">
+                                <button type="submit" class="btn btn-primary">Crear Revision</button>
+                            </div>
+                        </div>
+                    </form> -->
+
+                </div><!-- jumbotron -->
+            </div><!-- col-md-12-->
+        </div>
+    </div>

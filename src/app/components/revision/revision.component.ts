@@ -5,6 +5,8 @@ import { RevisionService }  from "../../services/revision.service";
 import { VideosService }  from "../../services/videos.service";
 import { NavComponent } from "../nav-p/nav-p.component";
 import { HttpClientModule } from '@angular/common/http';
+import { GLOBAL } from '../../services/global';
+
 
 @Component({
     selector    : 'app-revision',
@@ -22,6 +24,8 @@ export class RevisionComponent implements OnInit {
     public loading: boolean;
     public revisiones;
     public revision;
+    public url;
+    public invoiceForm;
 
     constructor( 
         private _userService: UserService,
@@ -30,6 +34,7 @@ export class RevisionComponent implements OnInit {
         private _videosService: VideosService,
         private _revision: RevisionService
     ) { 
+        this.url = GLOBAL.url;
         this.loading = true;
         this.revisiones = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
     }
@@ -48,6 +53,8 @@ export class RevisionComponent implements OnInit {
 
     }
 
+
+
     getRevision(){
         this.token      = this._userService.getToken();
         this._revision.obtRevision( this.token )
@@ -55,11 +62,15 @@ export class RevisionComponent implements OnInit {
           response => {
             this.revision = response;
             this.revisiones = this.revision.data;
-
             this.loading    = false;
+
+            if( this.revision.status != 'success' ){
+                this._router.navigate([ "/login" ]);
+            }
+
           })  
 
-        
+
         
     }
 }

@@ -4,6 +4,7 @@ import { UserService }  from "../../services/user.service";
 import { VideosService }  from "../../services/videos.service";
 import { NavComponent } from "../nav-p/nav-p.component";
 import {HttpClientModule} from '@angular/common/http';
+import { GLOBAL } from '../../services/global';
 
 @Component({
   selector: 'app-videos',
@@ -18,14 +19,16 @@ export class VideosComponent implements OnInit {
   public objUnidades;
   public token;
   public loading: boolean;
+  public url;
 
   constructor( 
     private _userService: UserService,
     private _router: Router,
     private aRoute: ActivatedRoute,
-    private _videosService: VideosService
-  ) { 
+    private _videosService: VideosService,
 
+  ) { 
+      this.url = GLOBAL.url;
       this.loading = true;
   }
 

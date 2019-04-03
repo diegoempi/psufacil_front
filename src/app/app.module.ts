@@ -35,10 +35,15 @@ import { CapitulosYVideosComponent } from './components/videos/capitulosyvideos.
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminUnidadComponent } from './components/admin/adminUnidad.component';
 import { AdminCapituloComponent } from './components/admin/adminCapitulo.component';
+import { AdminRevisionComponent } from './components/admin/adminRevision.component';
+import { AdminRevisionCapituloComponent } from './components/admin/adminRevisionCapitulo.component';
+import { AdminRevisionUnidadComponent } from './components/admin/adminRevisionUnidad.component';
 import { VideosListaComponent } from "./components/videos/videoslista.component";
 import { RevisionComponent } from "./components/revision/revision.component";
 import { RevisionListaComponent } from "./components/revision/revisionlista.component";
 import { RevisionDetalleComponent } from "./components/revision/revisiondetalle.component";
+import { NavAdminComponent } from './components/nav-p/nav-p-admin.component';
+
 
 import { AdminVideoComponent } from './components/admin/adminVideo.component';
 import { LoadingComponent } from './components/shared/loading.component';
@@ -65,6 +70,9 @@ import { MatriculaComponent } from './components/matricula/matricula.component';
     AdminComponent,
     AdminUnidadComponent,
     AdminCapituloComponent,
+    AdminRevisionComponent,
+    AdminRevisionCapituloComponent,
+    AdminRevisionUnidadComponent,
     VideosListaComponent,
     AdminVideoComponent,
     DetalleComponent,
@@ -73,7 +81,8 @@ import { MatriculaComponent } from './components/matricula/matricula.component';
     LoadingComponent,
     RevisionComponent,
     RevisionListaComponent,
-    RevisionDetalleComponent
+    RevisionDetalleComponent,
+    NavAdminComponent
   ],
   imports: [
     BrowserModule,

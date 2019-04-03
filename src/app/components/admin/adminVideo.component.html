@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label><strong>Unidad perteneciente.</strong></label><br>
                         
-                    <select class="form-control" (change)="getCapChange($event.target.value)" name="cars" name="unidadVideo" #unidadVideo="ngModel" [(ngModel)]="video.unidad"  placeholder="Unidad video">
+                    <select class="form-control" (change)="getCapChange($event.target.value)" name="unidadVideo" #unidadVideo="ngModel" [(ngModel)]="video.unidad"  placeholder="Unidad video">
                         <option value="">Seleccione Unidad</option>
                         <option value="{{ unidad.id }}" *ngFor="let unidad of unidades">
                             {{ unidad.nombre }}
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label><strong>Capitulo perteneciente.</strong></label><br>
                             
-                    <select name="cars" [disabled]="disableCap"  name="capituloVideo" class="form-control" #capituloVideo="ngModel" [(ngModel)]="video.capitulo"  placeholder="Unidad video">
+                    <select name="cars" [disabled]="disableCap" name="capituloVideo" class="form-control" #capituloVideo="ngModel" [(ngModel)]="video.capitulo"  placeholder="Unidad video">
                         <option value="">Seleccione Capitulo</option>
                         <option value="{{ capitulo.id }}" *ngFor="let capitulo of capitulos">
                             {{ capitulo.nombre }}

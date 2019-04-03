@@ -7,6 +7,11 @@ import { AdjustComponent } from "./components/adjust/adjust.component";
 import { VideosComponent } from "./components/videos/videos.component"
 import { CapitulosYVideosComponent } from "./components/videos/capitulosyvideos.component";
 import { AdminComponent } from "./components/admin/admin.component";
+import { AdminUnidadComponent } from "./components/admin/adminUnidad.component";
+import { AdminCapituloComponent } from "./components/admin/adminCapitulo.component";
+import { AdminRevisionComponent } from "./components/admin/adminRevision.component";
+import { AdminRevisionUnidadComponent } from "./components/admin/adminRevisionUnidad.component";
+import { AdminRevisionCapituloComponent } from "./components/admin/adminRevisionCapitulo.component";
 import { VideosListaComponent } from "./components/videos/videoslista.component";
 import { DetalleComponent } from "./components/videos/detalle.component";
 import { MatriculaComponent } from "./components/matricula/matricula.component";
@@ -25,6 +30,11 @@ const APP_ROUTES: Routes = [
 	{ path: 'videos/lista/:id', component: VideosListaComponent },
 	{ path: 'videos/detalle/:id', component: DetalleComponent },
 	{ path: 'admin', component: AdminComponent },
+	{ path: 'admin/unidad', component: AdminUnidadComponent },
+	{ path: 'admin/capitulo', component: AdminCapituloComponent },
+	{ path: 'admin/revision', component: AdminRevisionComponent },
+	{ path: 'admin/revision/unidad', component: AdminRevisionUnidadComponent },
+	{ path: 'admin/revision/lista', component: AdminRevisionCapituloComponent },
 	{ path: 'matricula', component: MatriculaComponent },
 	{ path: 'revision', component: RevisionComponent },
 	{ path: 'revision/lista/:id', component: RevisionListaComponent },

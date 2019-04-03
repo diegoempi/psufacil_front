@@ -41,13 +41,25 @@ export class AdminUnidadComponent implements OnInit {
         private _http: HttpClient
     ){
         this.url = GLOBAL.url;
-        this.title = 'Administrador Unidades';
+        this.title = 'Administrador Unidades (videos)';
         this.unidad = new Unidad(1,'','','','0');
         this.suscripciones = ['Gratis','Anual', 'Intensiva'];
     }
 
     ngOnInit() {
+        this.redirectIfIdentity();
         this.getUnidades();
+    }
+
+    redirectIfIdentity(){
+        this.identity = this._userService.getIdentity();
+       
+        if( this.identity == null ) {
+          this._router.navigate([ "/login" ]);
+        }else if( this.identity.role == 'user' ){
+            this._router.navigate([ "/home" ]);
+        }
+    
     }
 
     getUnidades(){

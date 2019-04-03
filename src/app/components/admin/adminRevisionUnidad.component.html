@@ -1,0 +1,83 @@
+<nav-p [identity]="identity"></nav-p>
+<div class="container" id="header">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+                <ol class="breadcrumb primary-color" style="margin-right: 15px; padding: 10px; margin-bottom: 0;">
+                <li style="margin-left: 20px;"class="breadcrumb-item"><strong>{{ title }}</strong></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron"> 
+                <div class="col-md-12">
+                    <nav-p-admin></nav-p-admin>
+                </div>
+                <div class="col-md-12">
+                    <br>
+                    <h3>{{ title }}</h3>  
+                    <hr>        
+                </div>
+                <div class="col-md-12">
+                    <form #registrarUnidadRevision="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1"><strong>Nombre de unidad revisión</strong></label>
+                                <input type="text" 
+                                        name="nombreUnidadRevision" 
+                                        #nombreUnidadRevision="ngModel" 
+                                        [(ngModel)]="revisionUnidad.nombre" 
+                                        class="form-control" 
+                                        placeholder="Nombre Unidad revisión">
+                                <small class="form-text text-muted">Nombre perteniente a la unidad de revisión.</small>
+                                <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1"><strong>Descripción de unidad revisión.</strong></label>
+                                <input type="text" 
+                                        name="descripcionUnidadRevision" 
+                                        #descripcionUnidadRevision="ngModel" 
+                                        [(ngModel)]="revisionUnidad.descripcion" 
+                                        class="form-control" 
+                                        placeholder="Descripción de la unidad de revision.">
+                                <small class="form-text text-muted">Descripción perteneciente a la unidad de revisión.</small>
+                                <!--<span class="text-danger" *ngIf="!nombre.valid && nombre.touched">El nombre no es válido</span>-->
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="file"><strong>Imagen de unidad revisión.</strong></label>
+                                <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                                <input type="file" 
+                                        class="form-control" 
+                                        (change)="fileChangeImg($event)" 
+                                        name="imagenUnidadRevision" 
+                                        #imagenUnidadRevision="ngModel" 
+                                        [(ngModel)]="revisionUnidad.imagen" 
+                                        placeholder="Upload file">
+                                <small class="form-text text-muted">Imagen perteneciente a la unidad revisión.</small>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="file"><strong>Suscripción unidad revisión.</strong></label>
+                                <select name="gender" 
+                                        class="form-control" 
+                                        [(ngModel)]="revisionUnidad.suscripcion">
+                                    <option [value]="'0'" selected>Gratis</option>
+                                    <option [value]="'1'">Anual</option>
+                                    <option [value]="'2'">Intensivo</option>
+                                </select>
+                                <small class="form-text text-muted">Plan perteneciente.</small>
+                            </div>
+                            <div class="form-group col-md-2 align-self-end text-center">
+                                <button type="submit" class="btn btn-primary">Crear Unidad</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div><!-- jumbotron -->
+            </div><!-- col-md-12-->
+        </div>
+    </div>
+</div>

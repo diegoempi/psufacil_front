@@ -1,24 +1,28 @@
 import { Component, OnInit, Input, HostListener,ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { UserService }  from "../../services/user.service";
+import { RevisionService }  from "../../services/revision.service";
 import { NavComponent } from "../nav-p/nav-p.component";
 import { User } from "../../models/user";
 import { AdminUnidadComponent } from "../admin/adminUnidad.component"
 import { VideosService }  from "../../services/videos.service";
 import { Video } from "../../models/videos";
 import { Unidad } from "../../models/unidad";
+import { RevisionUnidadLista } from "../../models/revisionUnidad";
 import { GLOBAL } from '../../services/global';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import swal from'sweetalert2';
+import { FormBuilder, FormGroup, Validators, FormControl, Form } from "@angular/forms";
+
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
+  selector: 'app-admin-revision-capitulo',
+  templateUrl: './adminRevisionCapitulo.component.html',
   styleUrls: [],
   providers: [UserService]
 })
-export class AdminComponent implements OnInit {
+export class AdminRevisionCapituloComponent implements OnInit {
     @ViewChild('fileInput') fileInput;   
     public identity;
     public title;
@@ -31,34 +35,32 @@ export class AdminComponent implements OnInit {
     public url;
 
     public disableCap = true;
+    public loaderUnidad = true;
 
-    public unidades;
+    public revisionUnidadLista;
     public objUnidades;
-    public capitulos;
-    public objCapitulos;
-    public videos;
-    public objVideos;
+    public unidades;
 
     public data:any = { status:{} };
 
     constructor( 
-        private _userService: UserService,
-        private _router: Router,
-        private _videosService: VideosService,
-        private _http: HttpClient
+        private _userService        : UserService,
+        private _router             : Router,
+        private _videosService      : VideosService,
+        private _http               : HttpClient,
+        private _revisionService    : RevisionService
     ){
-
-        this.url = GLOBAL.url;
-        this.title = 'Administrador Videos';
-        this.unidad = new Unidad(1,'','','','');
-        this.video = new Video(1,'','','','','','','0');
-
+            this.url = GLOBAL.url;
+            this.title = 'Administrador Revisión Lista';
+            this.unidad = new Unidad(1,'','','','');
+            this.revisionUnidadLista = new RevisionUnidadLista(1,'','','0');
     }
 
     ngOnInit() {
         this.redirectIfIdentity();
-        this.getUnidades();
-        this.getVideosTodos();
+        
+        //traer unidades 
+        this.getUnidadesRevision();
     }
 
     redirectIfIdentity(){
@@ -69,38 +71,19 @@ export class AdminComponent implements OnInit {
         }else if( this.identity.role == 'user' ){
             this._router.navigate([ "/home" ]);
         }
-    
     }
 
-    getUnidades(){
+    getUnidadesRevision(){
 
         this.token = this._userService.getToken();
            
         if( this.token != null && this.token != ''){
            
-            this._videosService.obtAdmUnidades()
+            this._revisionService.obtRevisionUnidad( this.token )
                 .subscribe(respRegiones => {
-                    this.objUnidades  = respRegiones;
-                    this.unidades     = this.objUnidades.data;
-                });
-        }
-    }
-
-    getVideosTodos(){
-
-        this.token = this._userService.getToken();
-           
-        if( this.token != null && this.token != ''){
-           
-            this._videosService.obtVideosTodos( this.token )
-                .subscribe(respVideos => {
-                    this.objVideos  = respVideos;
-                    this.videos     = this.objVideos.data;
-          
-                    /*if(this.objUnidades.status != 'success'){
-                        this._router.navigate([ "/home" ]);
-                    }*/
-                    
+                    this.objUnidades            = respRegiones;
+                    this.unidades               = this.objUnidades.data;
+                    this.loaderUnidad           = false;
                 });
         }
     }
@@ -118,8 +101,8 @@ export class AdminComponent implements OnInit {
 
         this._videosService.ObtCapitulosForm( e, this.token )
         .subscribe(data => {
-            this.objCapitulos = data;
-            this.capitulos = this.objCapitulos.data;
+            //this.objCapitulos = data;
+            //this.capitulos = this.objCapitulos.data;
             
 
             this.disableCap = false;
@@ -127,38 +110,33 @@ export class AdminComponent implements OnInit {
         }, error => {
             console.log(error);
         });
-
     }
 
     onSubmit(){
 
         this.token = this._userService.getToken();
         let formData = new FormData();
-        formData.append('material', this.fileToUploadMat);
-        formData.append('nombre', this.video.nombre);
-        formData.append('descripcion', this.video.descripcion);
-        formData.append('url', this.video.url);
-        formData.append('unidad', this.video.unidad);
-        formData.append('capitulo', this.video.capitulo);
+        formData.append('nombre', this.revisionUnidadLista.nombre);
+        formData.append('unidad', this.revisionUnidadLista.unidad);
+        formData.append('suscripcion', this.revisionUnidadLista.suscripcion);
         formData.append('authorization', this.token);
-        formData.append('suscripcion', this.video.suscripcion);
 
-        this._videosService.IngVideo(formData)
+        this._revisionService.IngRevisionLista(formData)
             .subscribe(data => {
 
                 this.data = data;
 
                 if( this.data.status == 'success' ){
                     swal({
-                        title: 'Video creado exitosamente',
-                        text: 'Nuevo video creado exitosamente.',
+                        title: 'Lista creada exitosamente',
+                        text: 'Nuevo lista creada exitosamente.',
                         type: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'ok!'
                     }).then((result) => {
                         if (result.value) {
 
-                        window.location.href = '/admin';
+                            window.location.href = '/admin';
 
                         }
                     })

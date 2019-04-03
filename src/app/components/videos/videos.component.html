@@ -25,7 +25,7 @@
                     <div class="row">
                         <!-- ngFor -->
                         <div class="card animated animatedFadeInUp fadeInUp" style="width: 15.7rem; margin: 6px; padding: 5px;" *ngFor="let unidad of unidades">
-                            <a [routerLink]="['/videos/capitulos',unidad.id]"><img src="http://api.premate.cl/uploads/unidades/{{ unidad.url }}" class="card-img-top" alt="..."></a>
+                            <a [routerLink]="['/videos/capitulos',unidad.id]"><img src="{{ url }}/uploads/unidades/{{ unidad.url }}" class="card-img-top" alt="..."></a>
                             <div class="card-body">
                                 <a [routerLink]="['/videos/capitulos',unidad.id]" ><h5 class="card-title">{{ unidad.nombre }}</h5></a>
                                 <p class="card-text">{{ unidad.descripcion }}</p>

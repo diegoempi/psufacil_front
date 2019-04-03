@@ -8,12 +8,12 @@
                 
                         <form #loginForm="ngForm" (ngSubmit)="onSubmit();" class="col-md-12 no-padding"> 
                                 <div class="form-row">
-                                    <div class="form-group col-md-10 col-xs-10">
+                                    <div class="form-group col-md-8 col-xs-8">
                                         <label>RUT:</label>
                                         <input type="rut" class="form-control" name="rut" #rut="ngModel" [(ngModel)]="user.rut" required>
                                     </div>
-                                    <div class="form-group col-md-2 col-xs-2">
-                                        <label>Dígito:</label>
+                                    <div class="form-group col-md-4 col-xs-4">
+                                        <label>Dígito verificador:</label>
                                         <input type="dv" class="form-control" name="dv" #dv="ngModel" [(ngModel)]="user.digito_verificador" required>
                                     </div>
                                 </div>

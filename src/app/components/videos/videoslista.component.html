@@ -23,7 +23,7 @@
                         <h2 class="bold">{{ title }}:</h2>
                         <p class="font-italic">Seleccione uno de los siguientes videos para reproducir:</p>
                         <div class="row">
-                            <div class="col-xs-12 col-md-4">
+                            <div class="col-xs-12 col-md-4" style="height: 470px; overflow-y: scroll;">
                             <div class="list-group" id="list-tab" role="tablist">
                                 <a class="list-group-item list-group-item-action animated animatedFadeInUp fadeInUp" [class.active]="selectedVideo===video.id" *ngFor="let video of videos" id="hola{{ video.id }}" data-toggle="list" href="#{{ video.id }}" role="tab" aria-controls="home" (click)="selectedVideo = video.id">
                                 {{ video.nombre }}
@@ -36,7 +36,7 @@
                                     <h3 *ngIf="selectedVideo === video.id">
                                         {{ video.nombre}}
                                     </h3>
-                                    <div class="embed-responsive embed-responsive-4by3" *ngIf="selectedVideo === video.id" [id]="video.id" role="tabpanel" [attr.aria-labelledby]="'hola'+video.id">
+                                    <div class="embed-responsive embed-responsive-4by3" *ngIf="selectedVideo === video.id" [id]="video.id" role="tabpanel" [attr.aria-labelledby]="'hola'+video.id" style="margin-top: -50px;">
                                         
                                         <iframe [src]=" video.url | safe" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 

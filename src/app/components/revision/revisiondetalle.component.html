@@ -1,16 +1,16 @@
 <nav-p [identity]="identity"></nav-p>
 <div class="container" id="header">    
-        <div class="row">
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
-                    <ol class="breadcrumb primary-color" style="padding: 10px; margin-bottom: 0;">
-                        <li style="margin-left: 20px;"class="breadcrumb-item">
-                            <a [routerLink]="['/revision']">Revisión</a> / Lista / <strong>Detalle</strong>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+                <ol class="breadcrumb primary-color" style="padding: 10px; margin-bottom: 0;">
+                    <li style="margin-left: 20px;"class="breadcrumb-item">
+                        <a [routerLink]="['/revision']">Revisión</a> / Lista / <strong>Detalle</strong>
+                    </li>
+                </ol>
+            </nav>
         </div>
+    </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -22,9 +22,133 @@
                     <div class="col-md-12">
                         <p class="font-italic">Seleccione la alternativa correcta:</p>
                     </div>  
-                    <div class="col-md-12 animated animatedFadeInUp fadeInUp ">
+                    <div class="row animated animatedFadeInUp fadeInUp ">
+                        <div *ngFor="let num of revisionDetalle; let i=index" class="col-md-3" style="margin-top: 10px;">
+                            <div class="row">
+                                <div class="col.md-12" style="font-size: 23px !important;">
+                                    {{num.pregunta}}
+                                </div>
+                                <div  *ngFor="let alt of num.alternativas;" class="col-md-2">
+                                        
+                                        <input  name="{{num.id}}" 
+                                                type="radio" 
+                                                [value]="alt" 
+                                                [(ngModel)]="values[i]" 
+                                                [disabled]="num.correcta" 
+                                                (change)="handleChange(i)" 
+                                                style="width: 3em;
+                                                height: 3em; cursor:pointer; "/>
+                                        <div class="col-md-12" style="margin-top: -35px;">{{ alt }}</div>
+                                                <!--<label class="labelPreguntas"> 
+                                            </label>-->
+                                        
+                                </div>
+                                <div *ngIf="showIcons[i]" class="col-md-12" style="margin-top: 10px;margin-left: 20px;">
+                                    <i class="fas fa-check text-success" style="font-size: 20px;" *ngIf=" num.correcta === true "></i>
+                                    <i class="fas fa-times text-danger"  style="font-size: 20px;" *ngIf=" num.correcta === false && values[i] !== '' "></i>
+                                    <i class="far fa-circle text-primary"  style="font-size: 20px;" *ngIf=" values[i] === '' && num.correcta === false "></i>
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="alert alert-success col-md-12" role="alert" *ngIf="this.objRevisionDetalle.completado" style="font-size: 15px;">
+                            Felicitaciones <i class="far fa-smile-wink"></i> todas las respuestas son correctas.
+                        </div>
+                        <div class="col-md-12" *ngIf="!this.objRevisionDetalle.completado">
+                            <button type="button" class="btn btn-secondary" (click)="onSubmit()">Enviar respuestas</button>
+                        </div>
+                    </div>
+        </div>
+
+</div>          
+
+
+                       <!-- <form [formGroup]="invoiceForm">
+                                <div formArrayName="itemRows" class="row">
+                                    <div class="col-md-3" style="padding-top: 10px;" *ngFor="let itemrow of invoiceForm.controls.itemRows.controls; let i=index" [formGroupName]="i">
+                                        <div class="row p-3">
+                                            {{ itemrow.value.pregunta }} {{ itemrow.value.respuesta }}
+                                            <div class="col-md-2" *ngFor="let alternativa of alternativas;">
+                                                <input type="radio" >{{ alternativa }}<br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-secondary" (click)="onSubmit()">Enviar respuestas</button>
+                                </div>
+                        </form>-->
+<!--
+                        <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-12 no-padding"> 
+                        
+                                <div *ngFor="let option of options">
+                                        <div class="radio">
+                                            <input type="radio"
+                                               name="radio"
+                                               id="radio-{{option.id}}"
+                                               [(ngModel)]="value"
+                                               [value]="option.value"
+                                               />
+                                
+                                        <label for="radio-{{option.id}}">{{option.id}}
+                                        </label>
+                                
+                                    </div>
+                                  </div>
+
+                        </form>
+-->
+                      <!--  <form [formGroup]="expenseEditForm">
+                                <label>Notes: </label>
+                                <input formControlName="unidad" /><br>
+                                <div formArrayName="preguntasForm"> 
+                              
+                                    <div *ngFor="let d of expenseEditForm.get('preguntasForm').controls; let i=index" [formGroupName]="i">
+                                   
+                                    <label>Pregunta: {{d.value.id }}</label>
+                                        <div *ngFor="let alter of d.value.alternativas">
+                                            <input type="radio" [formControlName]="id"  /> {{ alter }}
+                                        </div>
+                                    -->
+                                    
+                                    <!--<input type="radio" [value]="B" [formControlName]="id" />
+                                    <input type="radio" [value]="C" [formControlName]="id" />
+                                    <input type="radio" [value]="D" [formControlName]="id" />
+                                    <input type="radio" [value]="E" [formControlName]="id" />-->
+
+                                        <!--<div class="form-check-inline" style="margin-right: .35rem;" *ngFor='let alternativa of alternativas' >
+                                            <input type="radio" formControlName="id"/> {{ alternativa }}
+                                            <!--<input type="radio" formControlName="{{ d }}" /> {{alternativa}}-->
+                                        <!--</div>-->
+                                        
+                                        <!--<input type="text" [value]="respuesta" formControlName="id" > -->
+                                        <!--<input type="text" [value]="false" formControlName="id" > No-->
+                    <!--            </div>
+                               </div>
+                        </form>
+                    -->
+
+
+                            <!--  <form [formGroup]="form">
+                                    <div formArrayName="questions">
+                                      <div *ngFor="let question of questions; index as i">{{question.question}}
+                                        <div *ngFor="let answer of question.answers; index as j">
+                                          <input type="radio" [value]="answer" [formControlName]="i">
+                                          {{ answer }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <button (click)="log()">Log form to console</button>
+                                    </form>
+
+                                -->
+             
+                           
                         <!-- ngFor -->
                         <!--<div class="card animated animatedFadeInUp fadeInUp" style="width: 15.7rem; margin: 6px; padding: 5px;">-->
+                        <!--
                         <form>
                             <div class="form-row">
                                 <div class="col-md-3" style="padding: 15px;" *ngFor="let revision of revisionDetalle">
@@ -46,7 +170,6 @@
                                     <i class="fas fa-check text-success" style="font-size: 20px;" *ngIf="revision.correcta == 1"></i>
                                     <i class="fas fa-times text-danger"  style="font-size: 20px;" *ngIf="revision.correcta == 0"></i>
                                     <i class="far fa-circle text-primary"  style="font-size: 20px;" *ngIf="revision.correcta == 2"></i>
-                                    
                                 </div>
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-secondary" (click)="onSubmit()">Enviar respuestas</button>
@@ -54,9 +177,30 @@
                                 
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    -->
 
-</div>
+                        <!--<form [formGroup]="forma" (ngSubmit)="test()" novalidate="novalidate">
+                            
+                              
+                            <div class="col-md-8" formArrayName="respuestas">
+                                <div class="col-md-4" *ngFor='let revision of revisionDetalle'>
+                               <!-- <input *ngFor="let respuesta of forma.controls['respuestas'].controls; let i = index;"
+                                      type="text"
+                                      class="form-control"
+                                      [formControlName]="i">-->
+
+                            <!--          <div class="form-check-inline" style="margin-right: .35rem;" *ngFor='let alternativa of alternativas' >
+                                           <!-- <label>
+                                               <input *ngFor="let respuesta of forma.controls['respuestas'].controls; let i = index;" 
+                                                    type="radio"
+                                                    class="form-control" 
+                                                    [formControlName]="i">
+                                                        {{alternativa}}
+                                        </label>-->
+                             <!--           <input type="radio" *ngFor="let respuesta of forma.controls['respuestas'].controls; let i = index;" [formControlName]="revision.id" >
+                                        {{revision.id}}
+                                      </div>
+                                </div>
+                            </div>
+
+                        </form>-->

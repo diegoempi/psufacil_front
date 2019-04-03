@@ -45,15 +45,28 @@ export class AdminCapituloComponent implements OnInit {
         private _http: HttpClient
     ){
         this.url = GLOBAL.url;
-        this.title = 'Administrador Capitulos';
+        this.title = 'Administrador Capitulos (videos)';
         this.capitulo = new Capitulo(1,'','','','','0');
     }
 
     ngOnInit() {
+        this.redirectIfIdentity();
         this.getCapitulos();
         this.getUnidades();
     }
 
+    redirectIfIdentity(){
+        this.identity = this._userService.getIdentity();
+       
+        if( this.identity == null ) {
+          this._router.navigate([ "/login" ]);
+        }else if( this.identity.role == 'user' ){
+            this._router.navigate([ "/home" ]);
+        }
+    
+    }
+
+    
     getUnidades(){
 
         this.token = this._userService.getToken();
@@ -225,8 +238,8 @@ export class AdminCapituloComponent implements OnInit {
 
                 if( this.data.status == 'success' ){
                     swal({
-                        title: 'Unidad creada exitosamente',
-                        text: 'Nueva unidad creada exitosamente.',
+                        title: 'Capitulo creado exitosamente',
+                        text: 'Nueva capitulo creada exitosamente.',
                         type: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'ok!'

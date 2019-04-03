@@ -50,7 +50,60 @@ export class RevisionService{
 
         return this._http.post( url2, params,  { headers: new HttpHeaders()
             .set('Content-Type', 'application/x-www-form-urlencoded') })
-            .map(resp => {console.log(resp);return resp;  });
+            .map(resp => {return resp;  });
     }
+
+
+    IngRevisionUnidad( formData ){
+        let url2 = this.url + '/ing/adm/unidades';
+    
+        return this._http.post( url2, formData )
+            //.set('Content-Type', 'application/json') })
+            .map(resp => {;return resp;  });
+    }
+
+    //obtengo unidades para cargar cmb en 
+    obtRevisionUnidad( token ){
+        let params = "authorization=" + token;
+        let url2 = this.url + '/obt/adm/revision/listas';
+    
+        return this._http.post( url2, params, { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
+            .map(resp => {;return resp;  });
+    }
+
+    //ingresa nueva lista
+    IngRevisionLista( formData ){
+        let url2 = this.url + '/ing/adm/revision/listas';
+    
+        return this._http.post( url2, formData )
+            .map(resp => {;return resp;  });
+            //.set('Content-Type', 'application/json') })
+            
+    }
+
+    obtRevisionLista( unidad, token ){
+        let params = "authorization=" + token + "&unidad=" + unidad;
+        let url2 = this.url + '/obt/adm/revision/list';
+    
+        return this._http.post( url2, params, { headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded') })
+            .map(resp => {;return resp;  });
+    }
+
+    IngRevision( formData ){
+        let url2 = this.url + '/ing/adm/revision';
+    
+        return this._http.post( url2, formData )
+            .map(resp => {;return resp;  });
+    }
+
+    IngRevisionAlumno( formData ){
+        let url2 = this.url + '/ing/revision';
+    
+        return this._http.post( url2, formData )
+            .map(resp => {;return resp;  });
+    }
+
 
 }

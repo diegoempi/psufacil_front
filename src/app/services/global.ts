@@ -94,4 +94,5 @@ export class GlobalService{
 
 export var GLOBAL = {
     url: 'http://api.premate.cl'
+    //url: 'http://localhost:8000'
 };
