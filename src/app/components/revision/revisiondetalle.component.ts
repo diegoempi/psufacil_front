@@ -127,6 +127,7 @@ public control = [];
                                         this.showIcons.push(true);
                                     }else{
                                         this.values.push('');
+                                        this.showIcons.push(true);
                                     }
 
                                     //console.log(this.values);
