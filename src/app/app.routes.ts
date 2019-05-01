@@ -12,12 +12,18 @@ import { AdminCapituloComponent } from "./components/admin/adminCapitulo.compone
 import { AdminRevisionComponent } from "./components/admin/adminRevision.component";
 import { AdminRevisionUnidadComponent } from "./components/admin/adminRevisionUnidad.component";
 import { AdminRevisionCapituloComponent } from "./components/admin/adminRevisionCapitulo.component";
+import { AdminMaterialUnidadComponent } from "./components/admin/admin-material-unidad/admin-material-unidad.component";
 import { VideosListaComponent } from "./components/videos/videoslista.component";
 import { DetalleComponent } from "./components/videos/detalle.component";
 import { MatriculaComponent } from "./components/matricula/matricula.component";
 import { RevisionComponent } from "./components/revision/revision.component";
 import { RevisionListaComponent } from "./components/revision/revisionlista.component";
 import { RevisionDetalleComponent } from "./components/revision/revisiondetalle.component";
+import { AdminMaterialCapituloComponent } from "./components/admin/admin-material-capitulo/admin-material-capitulo.component";
+import { AdminMaterialComponent } from "./components/admin/admin-material/admin-material.component";
+import { MaterialComponent } from "./components/material/material.component";
+import { MaterialUnidadComponent } from "./components/material-unidad/material-unidad.component";
+
 
 const APP_ROUTES: Routes = [
 	{ path: 'web', component: HomeWComponent },
@@ -35,7 +41,12 @@ const APP_ROUTES: Routes = [
 	{ path: 'admin/revision', component: AdminRevisionComponent },
 	{ path: 'admin/revision/unidad', component: AdminRevisionUnidadComponent },
 	{ path: 'admin/revision/lista', component: AdminRevisionCapituloComponent },
+	{ path: 'admin/material/unidad', component: AdminMaterialUnidadComponent },	
+	{ path: 'admin/material/capitulo', component: AdminMaterialCapituloComponent },
+	{ path: 'admin/material/material', component: AdminMaterialComponent },
 	{ path: 'matricula', component: MatriculaComponent },
+	{ path: 'material/lista/:id', component: MaterialComponent },
+	{ path: 'material/unidad', component: MaterialUnidadComponent },
 	{ path: 'revision', component: RevisionComponent },
 	{ path: 'revision/lista/:id', component: RevisionListaComponent },
 	{ path: 'revision/detalle/:revision/:lista', component: RevisionDetalleComponent },

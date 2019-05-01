@@ -19,6 +19,7 @@ import { VideosService } from "./services/videos.service";
 import { GlobalService } from "./services/global";
 import { RevisionService } from "./services/revision.service";
 import { UserService } from "./services/user.service";
+import { MaterialService } from "./services/material.service";
 
 //componentes
 import { AppComponent } from './app.component';
@@ -52,6 +53,11 @@ import { SafePipe } from './pipes/globalPipes';
 
 import { DetalleComponent } from './components/videos/detalle.component';
 import { MatriculaComponent } from './components/matricula/matricula.component';
+import { AdminMaterialUnidadComponent } from './components/admin/admin-material-unidad/admin-material-unidad.component';
+import { AdminMaterialCapituloComponent } from './components/admin/admin-material-capitulo/admin-material-capitulo.component';
+import { AdminMaterialComponent } from './components/admin/admin-material/admin-material.component';
+import { MaterialComponent } from './components/material/material.component';
+import { MaterialUnidadComponent } from './components/material-unidad/material-unidad.component';
 
 
 @NgModule({
@@ -82,7 +88,12 @@ import { MatriculaComponent } from './components/matricula/matricula.component';
     RevisionComponent,
     RevisionListaComponent,
     RevisionDetalleComponent,
-    NavAdminComponent
+    NavAdminComponent,
+    AdminMaterialUnidadComponent,
+    AdminMaterialCapituloComponent,
+    AdminMaterialComponent,
+    MaterialComponent,
+    MaterialUnidadComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +109,7 @@ import { MatriculaComponent } from './components/matricula/matricula.component';
     GlobalService,
     RevisionService,
     UserService,
+    MaterialService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true  }
   ],
   bootstrap: [AppComponent]

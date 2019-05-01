@@ -1,0 +1,101 @@
+<nav-p [identity]="identity"></nav-p>
+    <div class="container" id="header">    
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+                    <ol class="breadcrumb primary-color" style="padding: 10px; margin-bottom: 0;">
+                        <li style="margin-left: 20px;"class="breadcrumb-item">
+                            <strong>Material</strong>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <app-loading *ngIf="loading"></app-loading>
+                    <div class="col-md-12">
+                        <h2 class="bold">Unidades:</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="font-italic">Seleccione una de las siguientes unidades:</p>
+                    </div>  
+                    <div class="row">
+                        <!-- ngFor -->
+                        <div class="card animated animatedFadeInUp fadeInUp" style="width: 15.7rem; margin: 6px; padding: 5px;" *ngFor="let unidad of unidades">
+                            <a [routerLink]="['/material/lista',unidad.id]"><img src="{{ url }}/uploads/material/unidades/{{ unidad.url }}" class="card-img-top" alt="..."></a>
+                            <div class="card-body">
+                                <a [routerLink]="['/material/lista',unidad.id]" ><h5 class="card-title">{{ unidad.nombre }}</h5></a>
+                                <p class="card-text">{{ unidad.descripcion }}</p>
+                                <a [routerLink]="['/material/lista',unidad.id]" class="btn btn-primary">Ingresar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--
+                    <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Unidad n°1
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Unidad n°2
+                                    </button>
+                                </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Unidad n°3
+                                    </button>
+                                </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                
+
+                </div>
+
+            -->
+                      
+                    
+
+
+
+
+            
+            <div class="col-md-12" style="padding-left:0 !important; padding-right: 0px !important;">
+                <div class="jumbotron" style="padding: 5px !important;">
+                    <img src="../../../assets/img/videos/1.png" alt="..." width="200" class="Responsive image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

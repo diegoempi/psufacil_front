@@ -1,0 +1,64 @@
+<nav-p [identity]="identity"></nav-p>
+<div class="container" id="header">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb" style="margin-bottom: 10px;">
+                <ol class="breadcrumb primary-color" style="    margin-right: 15px;
+                padding: 10px;
+                margin-bottom: 0;">
+                <li style="margin-left: 20px;"class="breadcrumb-item"><strong>{{ title }}</strong></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <div class="jumbotron"> 
+              <div class="col-md-12">
+                  <nav-p-admin></nav-p-admin>
+              </div>
+              <div class="col-md-12">
+                  <br>
+                  <h3>{{ title }}</h3>  
+                  <hr>        
+              </div>
+              <div class="col-md-12">
+                <form #registrarUnidad="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1"><strong>{{ title }}</strong></label>
+                            <input type="text" name="nombreUnidad" #nombreUnidad="ngModel" [(ngModel)]="unidad.nombre" class="form-control" placeholder="Nombre unidad">
+                            <small class="form-text text-muted">Nombre perteniente a la unidad.</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1"><strong>Descripción de Unidad.</strong></label>
+                            <input type="text" name="descripcionUnidad" #descripcionUnidad="ngModel" [(ngModel)]="unidad.descripcion" class="form-control" placeholder="Descripción unidad">
+                            <small class="form-text text-muted">Descripción perteneciente a la unidad.</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="file"><strong>Imagen de Unidad.</strong></label>
+                            <!--<input type="file" (change)="subeImg($event)" class="form-control-file" #fileInput accept=".xml" multiple="true">-->
+                            <input type="file" class="form-control" (change)="fileChange($event)" name="imagenUnidad" #imagenUnidad="ngModel" [(ngModel)]="unidad.imagen" placeholder="Upload file">
+                            <small class="form-text text-muted">Imagen perteneciente a la unidad.</small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="file"><strong>Suscripción.</strong></label>
+                            <select name="gender" class="form-control" [(ngModel)]="unidad.suscripcion">
+                                <option [value]="'0'" selected>Gratis</option>
+                                <option [value]="'1'">Anual</option>
+                                <option [value]="'2'">Intensivo</option>
+                            </select>
+                            <small class="form-text text-muted">Plan perteneciente.</small>
+                        </div>
+                        <div class="form-group col-md-2 align-self-end text-center">
+                            <button type="submit" class="btn btn-primary">Crear unidad</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
